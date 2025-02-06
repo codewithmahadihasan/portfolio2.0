@@ -38,12 +38,12 @@ const Blog = () => {
                               </div>
                         </div>
                   </div>
-                  <div className="content px-1  mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-20 py-4 lg:px-2 md:w-[100%] w-[95%]">
-                        {/* <h1 className="text-white font-semibold text-2xl border-b pb-2 border-[#80808093]">Blogs</h1>
-        <br /> */}
+                  <div className="content px-1 py-2 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-20 lg:px-2 md:w-[100%] w-[95%]">
+                        <h1 className="text-white font-semibold text-2xl border-b pb-2 border-[#80808093]">Blogs</h1>
+                        <br />
                         <div className="grid md:grid-cols-3 gap-12">
                               {
-                                    blog?.map(bData => <BlogCart key={bData.id} bData={bData} />)
+                                    blog?.map(bData => <BlogCart key={bData._id} bData={bData} />)
                               }
                         </div>
                   </div>
