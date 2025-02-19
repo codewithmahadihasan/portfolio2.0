@@ -150,13 +150,13 @@ const Main = () => {
                         />
                   </button>
 
-                  {/* Main Layout */}
+
                   <div className="">
                         <Header />
                   </div>
                   <div className=""><Outlet /></div>
                   <Footer />
-                  {/* <CopyrightBar /> */}
+                  <CopyrightBar />
             </div>
       );
 };

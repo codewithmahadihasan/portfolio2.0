@@ -113,7 +113,7 @@ const Header = () => {
                                     </li>}
 
                                     {
-                                          user && <li className="">
+                                          user && <li className="flex items-center gap-3">
                                                 <div className="dropdown dropdown-end cursor-pointer">
                                                       <label tabIndex={0} >
                                                             <div className="relative cursor-pointer">
@@ -366,7 +366,7 @@ const Header = () => {
                                           </li>
                                     }
                               </ul>
-                              <div className="lg:hidden md:flex items-center gap-3">
+                              <div className="lg:hidden flex items-center gap-3">
                                     {
                                           user && <div className="cursor-pointer">
                                                 <div className="dropdown dropdown-end cursor-pointer">
@@ -632,6 +632,7 @@ const Header = () => {
                                     </NavLink>
                               </li>
 
+
                               {
                                     user ? <li onClick={() => setOptOpen(!optOpen)} className={` mt-3 ${optOpen ? 'h-[auto]' : 'h-[42px]'} hidden overflow-hidden`}>
                                           <div className="flex items-center justify-between gap-2">
@@ -672,6 +673,7 @@ const Header = () => {
                                     </button>
                               </li>
                               }
+
                         </ul>
                   </div>
                   {schedule && <CallSchedule setModalOpen={setSchedule} isModalOpen={schedule} />}
