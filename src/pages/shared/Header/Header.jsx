@@ -26,9 +26,9 @@ const Header = () => {
 
 
       return (
-            <nav className="fixed w-full z-50 top-0 left-0 right-0">
-                  <div className="py-2  mx-auto glass md:py-4 md:px-[4%] w-full px-[4%]">
-                        <div className="relative px-4  mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 flex items-center justify-between">
+            <nav className="fixed  z-50 -top-0.5 left-0 right-0">
+                  <div className="py-2  mx-auto glass md:py-4 md:px-[4%] w-full px-[2%]">
+                        <div className="relative px-0 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 flex items-center justify-between">
                               <Link to="/"><img loading="eager" src={logo} alt="" className='w-[135px]' /></Link>
                               <ul className=" items-center hidden space-x-8 lg:flex ">
                                     <li className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400 relative">
@@ -550,6 +550,8 @@ const Header = () => {
                                           {!isMenuOpen ? <RiMenu3Fill className='text-4xl border-[red]' />
                                                 : <GiCancel className='text-4xl border-[red]' />}
                                     </button>
+
+
                               </div>
                         </div>
                   </div>
@@ -675,13 +677,16 @@ const Header = () => {
                   {schedule && <CallSchedule setModalOpen={setSchedule} isModalOpen={schedule} />}
             </nav>
       );
+
+
+
 };
 
 export default Header;
 
 
 
-const CallSchedule = ({ isModalOpen, setModalOpen }) => {
+export const CallSchedule = ({ isModalOpen, setModalOpen }) => {
       if (!isModalOpen) return null; // Modal won't render if it's closed
 
       return (

@@ -27,18 +27,18 @@ const HeadSection = () => {
                                                 </p>
                                           </div>
                                           <h2 className="font-sans text-3xl font-bold tracking-tight text-gray-100 sm:text-4xl sm:leading-none max-w-lg mb-6">
-                                                You have an {' '}
-                                                <span className="inline-block text-purple-400">IDEA,</span>
+                                                Envisioning the {" "}
+                                                <span className="inline-block text-purple-400">FUTURE,</span>
                                                 <br className="" />
-                                                we have the{' '}
-                                                <span className="inline-block text-purple-400">technology.</span>
+                                                Building the {""}
+                                                <span className="inline-block text-purple-400">SOFTWARE.</span>
                                           </h2>
                                           <p className="text-gray-300 text-base md:text-lg">You can be confident that we will provide you with nothing but the best service from our side.</p>
                                     </div>
                                     <div className="flex items-center space-x-3">
                                           <Link
                                                 className="group flex items-center justify-between gap-4  border border-indigo-600 bg-indigo-600 px-10 py-3 transition-colors hover:bg-transparent focus:outline-none focus:ring"
-                                                to='/contract'
+                                                to='/contacts'
                                           >
                                                 <span
                                                       className="font-medium text-white transition-colors group-hover:text-indigo-600 group-active:text-indigo-500"

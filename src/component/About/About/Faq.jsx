@@ -175,7 +175,7 @@ const CallSchedule = ({ isModalOpen, setModalOpen }) => {
 
       return (
             <div className="fixed inset-0 z-50 flex items-center h-screen pt-20 justify-center bg-black bg-opacity-70">
-                  <div className="relative mx-6 w-full max-w-4xl  p-4 bg-white rounded-lg shadow-lg">
+                  <div className="relative mx-6 w-full max-w-4xl  p-4 glass rounded-lg shadow-lg">
 
                         {/* Calendly iframe with modifications */}
                         <iframe

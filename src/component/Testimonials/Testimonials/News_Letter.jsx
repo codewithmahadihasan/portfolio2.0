@@ -4,7 +4,7 @@ const News_Letter = () => {
       const subscribe_news_letter = (event) => {
             event.preventDefault(); // Prevent form submission
             const email = event.target.email.value; // Access the email input value
-            console.log(email);
+          
       };
 
       return (

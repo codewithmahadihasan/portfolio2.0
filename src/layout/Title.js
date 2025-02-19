@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 const MetaTitle = ({ title, description, keywords, author, ogTitle, ogDescription, ogImage, ogUrl }) => {
       return (
             <Helmet>
-                  {/* Basic meta tags */}
+
                   <title>{`Bright Future Soft | ${title}`}</title>
                   <meta name="description" content={description || "Default description for Bright Future Soft"} />
                   <meta name="keywords" content={keywords || "software, development, technology, services"} />
