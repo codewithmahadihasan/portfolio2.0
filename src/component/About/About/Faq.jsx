@@ -1,7 +1,7 @@
 import { useState } from "react";
 import mahadi from '../../../Assctes/teamMember/mahadi.jpg';
 import hadi from '../../../Assctes/teamMember/mohotasimhadi.jpeg';
-import maruf from '../../../Assctes/teamMember/shishir.jpeg'
+import maruf from '../../../Assctes/teamMember/mahady.png'
 
 const Item = ({ title, children }) => {
       const [isOpen, setIsOpen] = useState(false);

@@ -11,6 +11,7 @@ import nahid from '../../../Assctes/teamMember/nahid.jpeg';
 import shishir from '../../../Assctes/teamMember/shishir.jpeg'
 import riky from '../../../Assctes/teamMember/riky.png'
 import mursed from '../../../Assctes/teamMember/mursed.jpg'
+import mahady from '../../../Assctes/teamMember/mahady.png'
 
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
 
@@ -49,13 +50,21 @@ const Team = () => {
                   "linkedIn": "https://www.linkedin.com/in/mohtasimhadi/",
                   "gender": "male"
             },
-
+            {
+                  "id": 3,
+                  "img": mahady,
+                  "name": "Mahady Hasan",
+                  "email": "mahady@brightfuturesoft.com",
+                  "post": "Client Relationship Manager",
+                  "linkedIn": "https://www.linkedin.com/in/mhasan878/",
+                  "gender": "male"
+            },
 
             {
                   "id": 3,
                   "img": acccountManager,
                   "name": "Regita Redhe",
-                  "email": "accounts@brightfuturesoft.com",
+                  "email": "redhe@brightfuturesoft.com",
                   "post": "Account Manager",
                   "linkedIn": "https://www.linkedin.com/in/regita-redhe-30b357271/",
                   "gender": "female"
@@ -65,7 +74,7 @@ const Team = () => {
                   "img": nahid,
                   "name": "Nahid Ferdaos",
                   "email": "nahid@brightfuturesoft.com",
-                  "post": "Software Developer",
+                  "post": "Software Engineer",
                   "linkedIn": "https://www.linkedin.com/in/nahid-ferdaos/",
                   "gender": "male"
             },
@@ -74,7 +83,7 @@ const Team = () => {
                   "img": sarwar,
                   "name": "Sarwar Hossain",
                   "email": "sarwar@brightfuturesoft.com",
-                  "post": "Software Developer",
+                  "post": "Software Engineer",
                   "linkedIn": "https://www.linkedin.com/in/sarwar-asik/",
                   "gender": "male"
             },
@@ -97,95 +106,6 @@ const Team = () => {
                   "gender": "male"
             }
 
-            // {
-            //   "id": 4,
-            //   "img": oshim,
-            //   "name": "Ashim Rudra Paul",
-            //   "email": "ashim@brightfuturesoft.com",
-            //   "post": "Software Engineer",
-            //   "linkedIn": "https://www.linkedin.com/in/codewithashim/",
-            //   "gender": "male"
-            // },
-
-            ,
-            // {
-            //   "id": 9,
-            //   "img": abdurRab,
-            //   "name": "MD. ABDUR RAB",
-            //   "email": "abdur@brightfuturesoft.com",
-            //   "post": "Product Designer",
-            //   "linkedIn": "https://www.linkedin.com/in/md-abdur-rab-90b110185/",
-            //   "gender": "male"
-            // }
-            // ,
-            // {
-            //   "id": 10,
-            //   "img": nezaul,
-            //   "name": "Nazmul Hoque",
-            //   "email": "nazmul@brightfuturesoft.com",
-            //   "post": "Product Developer",
-            //   "linkedIn": "https://www.linkedin.com/in/nazmul-sujon/",
-            //   "gender": "male"
-            // }
-            // ,
-            // {
-            //   "id": 10,
-            //   "img": un,
-            //   "name": "Farhan Ahmed",
-            //   "email": "farhan@brightfuturesoft.com",
-            //   "post": "Product Developer",
-            //   "linkedIn": "https://www.linkedin.com/in/nazmul-sujon/",
-            //   "gender": "male"
-            // }
-            // ,
-
-            // {
-            //   "id": 12,
-            //   "img": shuchi,
-            //   "name": "Suchi Roy",
-            //   "email": "suchi@brightfuturesoft.com",
-            //   "post": "Product Designer",
-            //   "linkedIn": "https://www.linkedin.com/in/minhaz-khan-/",
-            //   "gender": "Female"
-            // }, {
-            //   "id": 5,
-            //   "img": mamon,
-            //   "name": "Md. Abdullah Al Mamun",
-            //   "email": "mamun@brightfuturesoft.com",
-            //   "post": "Front End Developer",
-            //   "linkedIn": "https://www.linkedin.com/in/mdmamunabdullah/",
-            //   "gender": "male"
-
-            // },
-
-            // {
-            //   "id": 7,
-            //   "img": mushfiq,
-            //   "name": "Musfiqur Rahman",
-            //   "email": "mushfiq@brightfuturesoft.com",
-            //   "post": "Web Developer",
-            //   "linkedIn": "https://www.linkedin.com/in/musfiqurofficial/",
-            //   "gender": "male"
-            // }
-            ,
-            // {
-            //   "id": 8,
-            //   "img": mamonKhan,
-            //   "name": "Md Mamun Khan",
-            //   "email": "info@brightfuturesoft.com",
-            //   "post": "Marketing Manager",
-            //   "linkedIn": "https://www.linkedin.com/in/md-mamun-khan/",
-            //   "gender": "male"
-            // },
-            // {
-            //   "id": 8,
-            //   "img": minhaz,
-            //   "name": "Minhaz Khan",
-            //   "email": "minhaz@brightfuturesoft.com",
-            //   "post": "Web Developer",
-            //   "linkedIn": "https://www.linkedin.com/in/md-mamun-khan/",
-            //   "gender": "male"
-            // },
 
       ]
       return (

@@ -5,7 +5,7 @@ import Contact from "../Contact/Contact/Contact"
 import { CallSchedule } from "../../pages/shared/Header/Header"
 import mahadi from '../../Assctes/teamMember/mahadi.jpg';
 import hadi from '../../Assctes/teamMember/mohotasimhadi.jpeg';
-import maruf from '../../Assctes/teamMember/shishir.jpeg'
+import maruf from '../../Assctes/teamMember/mahady.png'
 // import { ChevronDown, Mail } from "lucide-react"
 
 const TermsAndConditions = () => {

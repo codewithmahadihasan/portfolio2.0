@@ -15,6 +15,7 @@ import nahid from '../../../Assctes/teamMember/nahid.jpeg';
 import shishir from '../../../Assctes/teamMember/shishir.jpeg'
 import riky from '../../../Assctes/teamMember/riky.png'
 import mursed from '../../../Assctes/teamMember/mursed.jpg'
+import mahady from '../../../Assctes/teamMember/mahady.png'
 
 import un from '../../../Assctes/teamMember/unknown.svg'
 import { HiOutlineMicrophone } from 'react-icons/hi2';
@@ -65,7 +66,15 @@ const About = () => {
                   "linkedIn": "https://www.linkedin.com/in/mohtasimhadi/",
                   "gender": "male"
             },
-
+            {
+                  "id": 3,
+                  "img": mahady,
+                  "name": "Mahady Hasan",
+                  "email": "mahady@brightfuturesoft.com",
+                  "post": "Client Relationship Manager",
+                  "linkedIn": "https://www.linkedin.com/in/mhasan878/",
+                  "gender": "male"
+            },
 
             {
                   "id": 3,
