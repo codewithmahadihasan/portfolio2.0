@@ -6,7 +6,8 @@ import emailjs from "@emailjs/browser";
 import ReactDOM from "react-dom";
 import Lottie from "lottie-react";
 import groovyWalkAnimation from "./groovyWalkAnimation.json";
-import Title from '../../../layout/Title';
+import Title, { base_url } from '../../../layout/Title';
+import Swal from 'sweetalert2';
 
 const Contact = () => {
       const [activeMdl, setActiveMdl] = useState(false);
@@ -16,26 +17,40 @@ const Contact = () => {
       const sendEmail = (e) => {
             setLoading(true);
             e.preventDefault();
-            emailjs
-                  .sendForm(
-                        "thebrightfuture",
-                        "thebrightfuture.co",
-                        form.current,
-                        "k1X9xhaxBhNtWQbrr"
-                  )
-                  .then(
-                        (result) => {
-                              setActiveMdl(true)
-                              setLoading(false)
+            const full_name = e.target.full_name.value;
+            const email_or_phone = e.target.email_or_phone.value;
+            const message = e.target.message.value;
+            const time_stamp = new Date().toISOString();
 
+            console.log(full_name, email_or_phone, message, time_stamp);
+            fetch(`${base_url}/contact/add-contact`, {
+                  method: 'POST',
+                  headers: {
+                        'content-type': 'application/json',
+                        'author': 'bright_future_soft'
+                  },
+                  body: JSON.stringify({
+                        full_name,
+                        email_or_phone,
+                        message,
+                        time_stamp,
+                        status: 'pending'
+                  }),
+            })
+                  .then((res) => res.json())
+                  .then((data) => {
 
-                        },
-                        (error) => {
-                              setActiveMdl(false)
-                              setLoading(false)
-
+                        if (data) {
+                              Swal.fire({
+                                    title: '',
+                                    text: 'Your message has been sent successfully!',
+                                    icon: 'success',
+                              });
                         }
-                  );
+                        console.log(data);
+
+                  })
+            setLoading(false);
 
             e.target.reset();
       };
@@ -95,12 +110,12 @@ const Contact = () => {
                                                 <h3 className="text-4xl text-center">Your Message</h3>
                                                 <div className="relative bg-[#0b0a2238] border border-[#1795F0] rounded-lg mt-4">
 
-                                                      <input required name="from_name" id='from_name' type="text" className="w-full rounded-lg outline-none border-none bg-[#00000034]" placeholder="Enter your name" />
+                                                      <input required name="full_name" id='full_name' type="text" className="w-full rounded-lg outline-none border-none bg-[#00000034]" placeholder="Enter your full name" />
                                                 </div>
 
                                                 <div className="relative bg-[#0b0a2238] border border-[#1795F0] rounded-lg mt-8">
 
-                                                      <input required type="email" id='reply_to' name="reply_to" className="w-full rounded-lg outline-none border-none bg-[#00000034]" placeholder="Enter your email" />
+                                                      <input required type="text" id='email_or_phone' name="email_or_phone" className="w-full rounded-lg outline-none border-none bg-[#00000034]" placeholder="Enter your email or phone number" />
                                                 </div>
                                                 <div className="relative bg-[#0b0a2238] border border-[#1795F0] rounded-lg mt-8">
 

@@ -1,10 +1,35 @@
 import React from 'react';
+import Swal from 'sweetalert2';
+import { base_url } from '../../../layout/Title';
 
 const News_Letter = () => {
       const subscribe_news_letter = (event) => {
-            event.preventDefault(); // Prevent form submission
-            const email = event.target.email.value; // Access the email input value
-          
+            event.preventDefault();
+            const email = event.target.email.value;
+            fetch(`${base_url}/subscriber/add-subscriber`, {
+                  method: 'POST',
+                  headers: {
+                        'content-type': 'application/json',
+                  },
+                  body: JSON.stringify({
+                        email,
+                        status: 'pending',
+                        time_stamp: new Date().toISOString(),
+                  }),
+            })
+                  .then((res) => res.json())
+                  .then((data) => {
+                        if (data) {
+                              Swal.fire({
+                                    title: '',
+                                    text: 'You have successfully subscribed to our newsletter',
+                                    icon: 'success',
+                              });
+                        }
+                        console.log(data);
+                        event.target.reset();
+                  })
+
       };
 
       return (
