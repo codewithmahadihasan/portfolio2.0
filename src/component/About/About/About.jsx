@@ -16,7 +16,7 @@ import shishir from '../../../Assctes/teamMember/shishir.jpeg'
 import riky from '../../../Assctes/teamMember/riky.png'
 import mursed from '../../../Assctes/teamMember/mursed.jpg'
 import mahady from '../../../Assctes/teamMember/mahady.png'
-import anik from '../../../Assctes/teamMember/anik.png'
+import anik from '../../../Assctes/teamMember/anik.jpeg'
 
 import un from '../../../Assctes/teamMember/unknown.svg'
 import { HiOutlineMicrophone } from 'react-icons/hi2';
@@ -89,7 +89,7 @@ const About = () => {
             {
                   "id": 4,
                   "img": anik,
-                  "name": "Mahtab Anik",
+                  "name": "Md. Mahtab Uddin Anik",
                   "email": "anik@brightfuturesoft.com",
                   "post": "Digital Marketer",
                   "linkedIn": "https://www.linkedin.com/in/mahtab-anik",
