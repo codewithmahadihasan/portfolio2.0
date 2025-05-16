@@ -12,6 +12,7 @@ import shishir from '../../../Assctes/teamMember/shishir.jpeg'
 import riky from '../../../Assctes/teamMember/riky.png'
 import mursed from '../../../Assctes/teamMember/mursed.jpg'
 import mahady from '../../../Assctes/teamMember/mahady.png'
+import anik from '../../../Assctes/teamMember/anik.png'
 
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
 
@@ -68,6 +69,15 @@ const Team = () => {
                   "post": "Account Manager",
                   "linkedIn": "https://www.linkedin.com/in/regita-redhe-30b357271/",
                   "gender": "female"
+            },
+            {
+                  "id": 4,
+                  "img": anik,
+                  "name": "Mahtab Anik",
+                  "email": "anik@brightfuturesoft.com",
+                  "post": "Digital Marketer",
+                  "linkedIn": "https://www.linkedin.com/in/mahtab-anik",
+                  "gender": "male"
             },
             {
                   "id": 6,
