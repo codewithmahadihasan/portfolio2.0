@@ -1,121 +1,116 @@
 import { useState } from "react"
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd"
 import { format } from "date-fns"
-import JoditEditor from "jodit-react"
+import { base_url } from "../../../layout/Title"
+import Swal from "sweetalert2"
+import { useQuery } from "@tanstack/react-query"
 
-const TaskManagement = () => {
-      const [tasks, setTasks] = useState([
-            {
-                  id: 1,
-                  text: "Product Research",
-                  description: "Conduct thorough market research and analyze competitor products",
-                  completed: true,
-                  phase: 1,
-                  assignedTo: "John",
-                  priority: "High",
-                  dueDate: "2024-04-01",
-                  tags: ["research", "planning"]
+
+function TaskManagement() {
+
+      const { data: tasks = [], refetch, isLoading } = useQuery({
+            queryKey: ["tasks"],
+            queryFn: async () => {
+                  const res = await fetch(
+                        `${base_url}/task/get-task`,
+                        {
+                              headers: {
+                                    'content-type': 'application/json',
+                                    'author': 'bright_future_soft'
+                              },
+                              method: 'GET',
+                        }
+                  );
+                  const data = await res.json();
+                  return data.data;
             },
-            {
-                  id: 2,
-                  text: "Market Analysis",
-                  description: "Analyze market trends and identify target audience",
-                  completed: true,
-                  phase: 1,
-                  assignedTo: "Sarah",
-                  priority: "Medium",
-                  dueDate: "2024-04-05",
-                  tags: ["analysis", "marketing"]
-            },
-            {
-                  id: 3,
-                  text: "Competitor Analysis",
-                  description: "Review competitor strategies and identify opportunities",
-                  completed: false,
-                  phase: 1,
-                  assignedTo: "Mike",
-                  priority: "Low",
-                  dueDate: "2024-04-10",
-                  tags: ["research", "competition"]
-            },
-            {
-                  id: 4,
-                  text: "Design System",
-                  description: "Create a comprehensive design system for the product",
-                  completed: false,
-                  phase: 2,
-                  assignedTo: "Emma",
-                  priority: "High",
-                  dueDate: "2024-04-15",
-                  tags: ["design", "ui"]
-            },
-      ])
+      });
+
+      console.log(tasks);
 
       const [newTask, setNewTask] = useState("")
       const [newDescription, setNewDescription] = useState("")
-      const [selectedPhase, setSelectedPhase] = useState(1)
-      const [assignee, setAssignee] = useState("John")
-      const [priority, setPriority] = useState("Medium")
-      const [dueDate, setDueDate] = useState("")
-      const [showForm, setShowForm] = useState(false)
-      const [searchTerm, setSearchTerm] = useState("")
-      const [editingTask, setEditingTask] = useState(null)
+      const [newStatus, setNewStatus] = useState("planning")
+      const [newAssignee, setNewAssignee] = useState("John")
+      const [newPriority, setNewPriority] = useState("Medium")
+      const [newDueDate, setNewDueDate] = useState("")
       const [newTags, setNewTags] = useState("")
+      const [showAddTaskModal, setShowAddTaskModal] = useState(false)
+      const [searchTerm, setSearchTerm] = useState("")
+      const [selectedTask, setSelectedTask] = useState(null)
+      const [showTaskModal, setShowTaskModal] = useState(false)
 
       const team = ["John", "Sarah", "Mike", "Emma"]
       const priorities = ["Low", "Medium", "High"]
-      const phases = [
-            { id: 1, name: "Planning" },
-            { id: 2, name: "In Progress" },
-            { id: 3, name: "Review" }
+      const columns = [
+            { id: "planning", name: "Planning" },
+            { id: "in_progress", name: "In Progress" },
+            { id: "complete", name: "Complete" },
       ]
 
       const addTask = () => {
             if (newTask.trim() !== "") {
-                  setTasks([
-                        ...tasks,
-                        {
-                              id: Date.now(),
-                              text: newTask,
-                              description: newDescription,
-                              completed: false,
-                              phase: selectedPhase,
-                              assignedTo: assignee,
-                              priority,
-                              dueDate,
-                              tags: newTags.split(",").map(tag => tag.trim()).filter(tag => tag !== "")
+                  const newTaskObj = {
+                        text: newTask,
+                        description: newDescription,
+                        status: newStatus,
+                        assignedTo: newAssignee,
+                        priority: newPriority,
+                        dueDate: newDueDate,
+                        timestamp: new Date().toISOString(),
+                        tags: newTags
+                              .split(",")
+                              .map((tag) => tag.trim())
+                              .filter((tag) => tag !== ""),
+                  }
+
+                  fetch(`${base_url}/task/add-task`, {
+                        method: "POST",
+                        headers: {
+                              "content-type": "application/json",
+                              author: "bright_future_soft",
                         },
-                  ])
-                  setNewTask("")
-                  setNewDescription("")
-                  setNewTags("")
-                  setShowForm(false)
+                        body: JSON.stringify(newTaskObj),
+                  })
+                        .then((res) => res.json())
+                        .then((data) => {
+                              if (data.success) {
+                                    Swal.fire(data.message, " ", "success")
+                                    refetch()
+                              }
+                        })
+                  resetForm()
+                  setShowAddTaskModal(false)
             }
       }
 
-      const updateTask = (taskId, updates) => {
-            setTasks(tasks.map(task =>
-                  task.id === taskId ? { ...task, ...updates } : task
-            ))
+      const resetForm = () => {
+            setNewTask("")
+            setNewDescription("")
+            setNewStatus("planning")
+            setNewAssignee("John")
+            setNewPriority("Medium")
+            setNewDueDate("")
+            setNewTags("")
       }
 
-      const toggleTask = (id) => {
-            setTasks(tasks.map((task) => (task.id === id ? { ...task, completed: !task.completed } : task)))
+      const updateTask = (taskId, updates) => {
+            // setTasks(tasks.map((task) => (task._id === taskId ? { ...task, ...updates } : task)))
       }
 
       const deleteTask = (id) => {
-            setTasks(tasks.filter((task) => task.id !== id))
+            // setTasks(tasks.filter((task) => task._id !== id))
       }
 
       const onDragEnd = (result) => {
             if (!result.destination) return
 
             const { source, destination } = result
-            const taskId = parseInt(result.draggableId)
-            const newPhase = parseInt(destination.droppableId)
+            const taskId = Number.parseInt(result.draggableId)
+            const newStatus = destination.droppableId
 
             if (source.droppableId !== destination.droppableId) {
-                  updateTask(taskId, { phase: newPhase })
+                  updateTask(taskId, { status: newStatus })
             }
       }
 
@@ -129,27 +124,47 @@ const TaskManagement = () => {
       }
 
       const getAssigneeInitials = (name) => {
-            return name.split(" ").map(n => n[0]).join("")
+            return name
+                  .split(" ")
+                  .map((n) => n[0])
+                  .join("")
       }
 
-      const filteredTasks = tasks.filter(task =>
-            task.text.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            task.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            task.assignedTo.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            task.priority.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            task.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
+      const openTaskModal = (task) => {
+            setSelectedTask(task)
+            setShowTaskModal(true)
+      }
+
+      const filteredTasks = tasks.filter(
+            (task) =>
+                  task.text.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                  task.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                  task.assignedTo.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                  task.priority.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                  task.tags.some((tag) => tag.toLowerCase().includes(searchTerm.toLowerCase())),
       )
 
+
+
       return (
-            <div className="bg-gray-900 min-h-screen">
-                  <div className=" px-4 sm:px-6 lg:px-8 py-8">
+            <div className="bg-gray-50 min-h-screen">
+                  <div className="container mx-auto px-4 py-8">
                         <div className="flex justify-between items-center mb-8">
-                              <h1 className="text-3xl font-bold ">Tasks</h1>
+                              <h1 className="text-3xl font-bold text-gray-900">Task Management</h1>
                               <button
-                                    onClick={() => setShowForm(!showForm)}
-                                    className="px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
+                                    onClick={() => setShowAddTaskModal(true)}
+                                    className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors flex items-center"
                               >
-                                    {showForm ? "Cancel" : "New Task"}
+                                    <svg
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          className="h-4 w-4 mr-2"
+                                          fill="none"
+                                          viewBox="0 0 24 24"
+                                          stroke="currentColor"
+                                    >
+                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                                    </svg>
+                                    New Task
                               </button>
                         </div>
 
@@ -159,186 +174,45 @@ const TaskManagement = () => {
                                     placeholder="Search tasks, descriptions, assignees, tags..."
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+                                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                               />
                         </div>
 
-                        {showForm && (
-                              <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                                    <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg">
-                                          <div className="space-y-4">
-                                                <input
-                                                      type="text"
-                                                      value={newTask}
-                                                      onChange={(e) => setNewTask(e.target.value)}
-                                                      placeholder="Task name"
-                                                      className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-                                                />
-                                                <JoditEditor
-                                                      // config={{ readonly: false }}
-                                                      // do not need here more button
-                                                      config={
-                                                            {
-                                                                  toolbarButtonSize: "small",
-                                                                  toolbarSticky: false,
-                                                                  showCharsCounter: false,
-                                                                  showWordsCounter: false,
-                                                                  showXPathInStatusbar: false,
-                                                                  disablePlugins: "about",
-                                                                  buttons: "bold,italic,underline,ul,image,hr,table,link"
-
-                                                            }
-
-                                                      }
-                                                      value={newDescription}
-                                                      // onChange={(content) => setNewDescription(content)}
-                                                      className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-black h-24"
-                                                />
-                                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                                                      <select
-                                                            value={selectedPhase}
-                                                            onChange={(e) => setSelectedPhase(Number(e.target.value))}
-                                                            className="px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-                                                      >
-                                                            {phases.map(phase => (
-                                                                  <option key={phase.id} value={phase.id}>{phase.name}</option>
-                                                            ))}
-                                                      </select>
-                                                      <select
-                                                            value={assignee}
-                                                            onChange={(e) => setAssignee(e.target.value)}
-                                                            className="px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-                                                      >
-                                                            {team.map((member) => (
-                                                                  <option key={member} value={member}>{member}</option>
-                                                            ))}
-                                                      </select>
-                                                      <select
-                                                            value={priority}
-                                                            onChange={(e) => setPriority(e.target.value)}
-                                                            className="px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-                                                      >
-                                                            {priorities.map((p) => (
-                                                                  <option key={p} value={p}>{p}</option>
-                                                            ))}
-                                                      </select>
-                                                      <input
-                                                            type="date"
-                                                            value={dueDate}
-                                                            onChange={(e) => setDueDate(e.target.value)}
-                                                            className="px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-                                                      />
-                                                </div>
-                                                <input
-                                                      type="text"
-                                                      value={newTags}
-                                                      onChange={(e) => setNewTags(e.target.value)}
-                                                      placeholder="Tags (comma-separated)"
-                                                      className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-                                                />
-                                                <div className="flex justify-end space-x-4">
-                                                      <button
-                                                            onClick={() => setShowForm(false)}
-                                                            className="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition-colors"
-                                                      >
-                                                            Cancel
-                                                      </button>
-                                                      <button
-                                                            onClick={addTask}
-                                                            className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
-                                                      >
-                                                            Add Task
-                                                      </button>
-                                                </div>
-                                          </div>
-                                    </div>
-                              </div>
-                        )}
-
                         <DragDropContext onDragEnd={onDragEnd}>
                               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                    {phases.map((phase) => (
-                                          <Droppable key={phase.id} droppableId={phase.id.toString()}>
+                                    {columns.map((column) => (
+                                          <Droppable key={column._id} droppableId={column._id}>
                                                 {(provided) => (
                                                       <div
                                                             ref={provided.innerRef}
                                                             {...provided.droppableProps}
-                                                            className="bg-gray-50 rounded-lg p-4"
+                                                            className="bg-gray-100 rounded-lg p-4"
                                                       >
-                                                            <h2 className="text-lg font-semibold text-gray-900 mb-4">
-                                                                  {phase.name}
-                                                            </h2>
+                                                            <h2 className="text-lg font-semibold text-gray-900 mb-4">{column.name}</h2>
                                                             <div className="space-y-3">
                                                                   {filteredTasks
-                                                                        .filter((task) => task.phase === phase.id)
+                                                                        .filter((task) => task.status === column.status)
                                                                         .map((task, index) => (
-                                                                              <Draggable
-                                                                                    key={task.id}
-                                                                                    draggableId={task.id.toString()}
-                                                                                    index={index}
-                                                                              >
+                                                                              <Draggable key={task._id} draggableId={task._id} index={index}>
                                                                                     {(provided) => (
                                                                                           <div
                                                                                                 ref={provided.innerRef}
                                                                                                 {...provided.draggableProps}
                                                                                                 {...provided.dragHandleProps}
-                                                                                                className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow"
+                                                                                                className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+                                                                                                onClick={() => openTaskModal(task)}
                                                                                           >
                                                                                                 <div className="flex items-start justify-between">
                                                                                                       <div className="flex items-start space-x-3 flex-1">
-                                                                                                            <button
-                                                                                                                  onClick={() => toggleTask(task.id)}
-                                                                                                                  className="mt-1 focus:outline-none"
-                                                                                                            >
-                                                                                                                  <div className={`w-4 h-4 rounded-full border-2 ${task.completed
-                                                                                                                        ? "bg-black border-black"
-                                                                                                                        : "border-gray-300"
-                                                                                                                        }`}>
-                                                                                                                        {task.completed && (
-                                                                                                                              <svg className="w-3 h-3 text-white" viewBox="0 0 12 12">
-                                                                                                                                    <path
-                                                                                                                                          fill="currentColor"
-                                                                                                                                          d="M3.7 9.6L1 6.9l.7-.7 2 2 4.6-4.6.7.7z"
-                                                                                                                                    />
-                                                                                                                              </svg>
-                                                                                                                        )}
-                                                                                                                  </div>
-                                                                                                            </button>
                                                                                                             <div className="flex-1">
-                                                                                                                  {editingTask === task.id ? (
-                                                                                                                        <div className="space-y-2">
-                                                                                                                              <input
-                                                                                                                                    type="text"
-                                                                                                                                    value={task.text}
-                                                                                                                                    onChange={(e) => updateTask(task.id, { text: e.target.value })}
-                                                                                                                                    className="w-full px-2 py-1 text-sm border border-gray-200 rounded"
-                                                                                                                              />
-                                                                                                                              <JoditEditor
-                                                                                                                                    value={task.description}
-                                                                                                                                    onChange={(content) => updateTask(task.id, { description: content })}
-                                                                                                                                    className="w-full px-2 py-1 text-sm border border-gray-200 rounded h-20"
-                                                                                                                              />
-                                                                                                                              <button
-                                                                                                                                    onClick={() => setEditingTask(null)}
-                                                                                                                                    className="text-xs text-blue-600 hover:text-blue-800"
-                                                                                                                              >
-                                                                                                                                    Save
-                                                                                                                              </button>
-                                                                                                                        </div>
-                                                                                                                  ) : (
-                                                                                                                        <div
-                                                                                                                              className="cursor-pointer"
-                                                                                                                        >
-                                                                                                                              <p className={`text-sm font-medium ${task.completed ? "text-gray-400 line-through" : "text-gray-900"
-                                                                                                                                    }`}>
-                                                                                                                                    {task.text}
-                                                                                                                              </p>
-                                                                                                                              {task.description && (
-                                                                                                                                    <p className="text-xs text-gray-500 mt-1">
-                                                                                                                                          {task.description}
-                                                                                                                                    </p>
-                                                                                                                              )}
-                                                                                                                        </div>
+                                                                                                                  <p
+                                                                                                                        className={`text-sm font-medium ${task.status === "complete" ? "text-gray-400 line-through" : "text-gray-900"
+                                                                                                                              }`}
+                                                                                                                  >
+                                                                                                                        {task.text}
+                                                                                                                  </p>
+                                                                                                                  {task.description && (
+                                                                                                                        <p className="text-xs text-gray-500 mt-1 line-clamp-2">{task.description}</p>
                                                                                                                   )}
                                                                                                                   <div className="mt-2 flex flex-wrap gap-2">
                                                                                                                         {task.tags.map((tag, i) => (
@@ -356,7 +230,7 @@ const TaskManagement = () => {
                                                                                                                         {task.dueDate && (
                                                                                                                               <>
                                                                                                                                     <span>•</span>
-                                                                                                                                    <span>{format(new Date(task.dueDate), 'MMM d, yyyy')}</span>
+                                                                                                                                    <span>{format(new Date(task.dueDate), "MMM d, yyyy")}</span>
                                                                                                                               </>
                                                                                                                         )}
                                                                                                                   </div>
@@ -366,20 +240,6 @@ const TaskManagement = () => {
                                                                                                             <div className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center text-xs font-medium">
                                                                                                                   {getAssigneeInitials(task.assignedTo)}
                                                                                                             </div>
-                                                                                                            <button
-                                                                                                                  onClick={() => deleteTask(task.id)}
-                                                                                                                  className="text-gray-400 hover:text-red-500 transition-colors"
-                                                                                                            >
-                                                                                                                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                                                                                                        <path d="M6 18L18 6M6 6l12 12" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                                                                                                  </svg>
-                                                                                                            </button>
-                                                                                                            <button
-                                                                                                                  onClick={() => setEditingTask(task.id === editingTask ? null : task.id)}
-                                                                                                                  className="text-gray-400 hover:text-red-500 transition-colors"
-                                                                                                            >
-                                                                                                                  <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pen"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z" /></svg>
-                                                                                                            </button>
                                                                                                       </div>
                                                                                                 </div>
                                                                                           </div>
@@ -394,6 +254,347 @@ const TaskManagement = () => {
                                     ))}
                               </div>
                         </DragDropContext>
+
+                        {/* Add Task Modal */}
+                        {showAddTaskModal && (
+                              <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+                                    <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
+                                          <div className="p-6">
+                                                <div className="flex justify-between items-center mb-4">
+                                                      <h3 className="text-lg font-semibold text-gray-900">Add New Task</h3>
+                                                      <button
+                                                            onClick={() => setShowAddTaskModal(false)}
+                                                            className="text-gray-400 hover:text-gray-500"
+                                                      >
+                                                            <svg
+                                                                  xmlns="http://www.w3.org/2000/svg"
+                                                                  className="h-6 w-6"
+                                                                  fill="none"
+                                                                  viewBox="0 0 24 24"
+                                                                  stroke="currentColor"
+                                                            >
+                                                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                                            </svg>
+                                                      </button>
+                                                </div>
+                                                <div className="grid gap-4">
+                                                      <div className="grid gap-2">
+                                                            <label htmlFor="task-name" className="text-sm font-medium text-gray-700">
+                                                                  Task Name
+                                                            </label>
+                                                            <input
+                                                                  id="task-name"
+                                                                  value={newTask}
+                                                                  onChange={(e) => setNewTask(e.target.value)}
+                                                                  placeholder="Enter task name"
+                                                                  className="px-3 py-2 border border-gray-300 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                            />
+                                                      </div>
+                                                      <div className="grid gap-2">
+                                                            <label htmlFor="task-description" className="text-sm font-medium text-gray-700">
+                                                                  Description
+                                                            </label>
+                                                            <textarea
+                                                                  id="task-description"
+                                                                  value={newDescription}
+                                                                  onChange={(e) => setNewDescription(e.target.value)}
+                                                                  placeholder="Enter task description"
+                                                                  rows={3}
+                                                                  className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                            />
+                                                      </div>
+                                                      <div className="grid grid-cols-2 gap-4">
+                                                            <div className="grid gap-2">
+                                                                  <label htmlFor="task-status" className="text-sm font-medium text-gray-700">
+                                                                        Status
+                                                                  </label>
+                                                                  <select
+                                                                        id="task-status"
+                                                                        value={newStatus}
+                                                                        onChange={(e) => setNewStatus(e.target.value)}
+                                                                        className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                                  >
+                                                                        {columns.map((column) => (
+                                                                              <option key={column._id} value={column._id}>
+                                                                                    {column.name}
+                                                                              </option>
+                                                                        ))}
+                                                                  </select>
+                                                            </div>
+                                                            <div className="grid gap-2">
+                                                                  <label htmlFor="task-assignee" className="text-sm font-medium text-gray-700">
+                                                                        Assignee
+                                                                  </label>
+                                                                  <select
+                                                                        id="task-assignee"
+                                                                        value={newAssignee}
+                                                                        onChange={(e) => setNewAssignee(e.target.value)}
+                                                                        className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                                  >
+                                                                        {team.map((member) => (
+                                                                              <option key={member} value={member}>
+                                                                                    {member}
+                                                                              </option>
+                                                                        ))}
+                                                                  </select>
+                                                            </div>
+                                                      </div>
+                                                      <div className="grid grid-cols-2 gap-4">
+                                                            <div className="grid gap-2">
+                                                                  <label htmlFor="task-priority" className="text-sm font-medium text-gray-700">
+                                                                        Priority
+                                                                  </label>
+                                                                  <select
+                                                                        id="task-priority"
+                                                                        value={newPriority}
+                                                                        onChange={(e) => setNewPriority(e.target.value)}
+                                                                        className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                                  >
+                                                                        {priorities.map((priority) => (
+                                                                              <option key={priority} value={priority}>
+                                                                                    {priority}
+                                                                              </option>
+                                                                        ))}
+                                                                  </select>
+                                                            </div>
+                                                            <div className="grid gap-2">
+                                                                  <label htmlFor="task-due-date" className="text-sm font-medium text-gray-700">
+                                                                        Due Date
+                                                                  </label>
+                                                                  <input
+                                                                        id="task-due-date"
+                                                                        type="date"
+                                                                        value={newDueDate}
+                                                                        onChange={(e) => setNewDueDate(e.target.value)}
+                                                                        className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                                  />
+                                                            </div>
+                                                      </div>
+                                                      <div className="grid gap-2">
+                                                            <label htmlFor="task-tags" className="text-sm font-medium text-gray-700">
+                                                                  Tags
+                                                            </label>
+                                                            <input
+                                                                  id="task-tags"
+                                                                  value={newTags}
+                                                                  onChange={(e) => setNewTags(e.target.value)}
+                                                                  placeholder="Enter tags (comma-separated)"
+                                                                  className="px-3 py-2 border bg-white border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                            />
+                                                      </div>
+                                                </div>
+                                                <div className="mt-6 flex justify-end space-x-3">
+                                                      <button
+                                                            onClick={() => setShowAddTaskModal(false)}
+                                                            className="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 transition-colors"
+                                                      >
+                                                            Cancel
+                                                      </button>
+                                                      <button
+                                                            onClick={addTask}
+                                                            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                                                      >
+                                                            Add Task
+                                                      </button>
+                                                </div>
+                                          </div>
+                                    </div>
+                              </div>
+                        )}
+
+                        {/* Task Detail Modal */}
+                        {showTaskModal && selectedTask && (
+                              <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+                                    <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
+                                          <div className="p-6">
+                                                <div className="flex justify-between items-center mb-4">
+                                                      <h3
+                                                            className={`text-lg font-semibold ${selectedTask.status === "complete" ? "text-gray-400 line-through" : "text-gray-900"
+                                                                  }`}
+                                                      >
+                                                            {selectedTask.text}
+                                                      </h3>
+                                                      <button onClick={() => setShowTaskModal(false)} className="text-gray-400 hover:text-gray-500">
+                                                            <svg
+                                                                  xmlns="http://www.w3.org/2000/svg"
+                                                                  className="h-6 w-6"
+                                                                  fill="none"
+                                                                  viewBox="0 0 24 24"
+                                                                  stroke="currentColor"
+                                                            >
+                                                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                                            </svg>
+                                                      </button>
+                                                </div>
+                                                <div className="grid gap-4">
+                                                      <div className="grid gap-2">
+                                                            <h4 className="text-sm font-medium text-gray-700">Description</h4>
+                                                            <p className="text-sm text-gray-500">{selectedTask.description}</p>
+                                                      </div>
+                                                      <div className="grid grid-cols-2 gap-4">
+                                                            <div className="flex items-center gap-2">
+                                                                  <svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        className="h-4 w-4 text-gray-500"
+                                                                        fill="none"
+                                                                        viewBox="0 0 24 24"
+                                                                        stroke="currentColor"
+                                                                  >
+                                                                        <path
+                                                                              strokeLinecap="round"
+                                                                              strokeLinejoin="round"
+                                                                              strokeWidth={2}
+                                                                              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                                                                        />
+                                                                  </svg>
+                                                                  <span className="text-sm">{selectedTask.assignedTo}</span>
+                                                            </div>
+                                                            <div className="flex items-center gap-2">
+                                                                  <svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        className={`h-4 w-4 ${getPriorityColor(selectedTask.priority)}`}
+                                                                        fill="none"
+                                                                        viewBox="0 0 24 24"
+                                                                        stroke="currentColor"
+                                                                  >
+                                                                        <path
+                                                                              strokeLinecap="round"
+                                                                              strokeLinejoin="round"
+                                                                              strokeWidth={2}
+                                                                              d="M3 21v-4m0 0V5a2 2 0 012-2h6.5L21 11.5V19a2 2 0 01-2 2h-8a2 2 0 01-2-2z"
+                                                                        />
+                                                                  </svg>
+                                                                  <span className="text-sm">{selectedTask.priority}</span>
+                                                            </div>
+                                                      </div>
+                                                      {selectedTask.dueDate && (
+                                                            <div className="flex items-center gap-2">
+                                                                  <svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        className="h-4 w-4 text-gray-500"
+                                                                        fill="none"
+                                                                        viewBox="0 0 24 24"
+                                                                        stroke="currentColor"
+                                                                  >
+                                                                        <path
+                                                                              strokeLinecap="round"
+                                                                              strokeLinejoin="round"
+                                                                              strokeWidth={2}
+                                                                              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                                                                        />
+                                                                  </svg>
+                                                                  <span className="text-sm">{format(new Date(selectedTask.dueDate), "MMMM d, yyyy")}</span>
+                                                            </div>
+                                                      )}
+                                                      {selectedTask.tags.length > 0 && (
+                                                            <div className="grid gap-2">
+                                                                  <h4 className="text-sm font-medium text-gray-700">Tags</h4>
+                                                                  <div className="flex flex-wrap gap-2">
+                                                                        {selectedTask.tags.map((tag, i) => (
+                                                                              <span key={i} className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">
+                                                                                    {tag}
+                                                                              </span>
+                                                                        ))}
+                                                                  </div>
+                                                            </div>
+                                                      )}
+                                                      <div className="grid gap-2">
+                                                            <h4 className="text-sm font-medium text-gray-700">Status</h4>
+                                                            <select
+                                                                  value={selectedTask.status}
+                                                                  onChange={(e) => {
+                                                                        const newStatus = e.target.value
+                                                                        updateTask(selectedTask._id, { status: newStatus })
+                                                                        setSelectedTask({ ...selectedTask, status: newStatus })
+                                                                  }}
+                                                                  className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                            >
+                                                                  {columns.map((column) => (
+                                                                        <option key={column._id} value={column._id}>
+                                                                              {column.name}
+                                                                        </option>
+                                                                  ))}
+                                                            </select>
+                                                      </div>
+                                                </div>
+                                                <div className="mt-6 flex justify-between">
+                                                      <button
+                                                            onClick={() => {
+                                                                  deleteTask(selectedTask._id)
+                                                                  setShowTaskModal(false)
+                                                            }}
+                                                            className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors flex items-center"
+                                                      >
+                                                            <svg
+                                                                  xmlns="http://www.w3.org/2000/svg"
+                                                                  className="h-4 w-4 mr-2"
+                                                                  fill="none"
+                                                                  viewBox="0 0 24 24"
+                                                                  stroke="currentColor"
+                                                            >
+                                                                  <path
+                                                                        strokeLinecap="round"
+                                                                        strokeLinejoin="round"
+                                                                        strokeWidth={2}
+                                                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                                                  />
+                                                            </svg>
+                                                            Delete
+                                                      </button>
+                                                      <div className="flex gap-2">
+                                                            <button
+                                                                  onClick={() => {
+                                                                        const newStatus = selectedTask.status === "complete" ? "in_progress" : "complete"
+                                                                        updateTask(selectedTask._id, { status: newStatus })
+                                                                        setSelectedTask({ ...selectedTask, status: newStatus })
+                                                                  }}
+                                                                  className="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 transition-colors flex items-center"
+                                                            >
+                                                                  {selectedTask.status === "complete" ? (
+                                                                        <>
+                                                                              <svg
+                                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                                    className="h-4 w-4 mr-2"
+                                                                                    fill="none"
+                                                                                    viewBox="0 0 24 24"
+                                                                                    stroke="currentColor"
+                                                                              >
+                                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                                                              </svg>
+                                                                              Mark Incomplete
+                                                                        </>
+                                                                  ) : (
+                                                                        <>
+                                                                              <svg
+                                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                                    className="h-4 w-4 mr-2"
+                                                                                    fill="none"
+                                                                                    viewBox="0 0 24 24"
+                                                                                    stroke="currentColor"
+                                                                              >
+                                                                                    <path
+                                                                                          strokeLinecap="round"
+                                                                                          strokeLinejoin="round"
+                                                                                          strokeWidth={2}
+                                                                                          d="M5 13l4 4L19 7"
+                                                                                    />
+                                                                              </svg>
+                                                                              Mark Complete
+                                                                        </>
+                                                                  )}
+                                                            </button>
+                                                            <button
+                                                                  onClick={() => setShowTaskModal(false)}
+                                                                  className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                                                            >
+                                                                  Close
+                                                            </button>
+                                                      </div>
+                                                </div>
+                                          </div>
+                                    </div>
+                              </div>
+                        )}
                   </div>
             </div>
       )
