@@ -13,6 +13,9 @@ import riky from '../../../Assctes/teamMember/riky.png'
 import mursed from '../../../Assctes/teamMember/mursed.jpg'
 import mahady from '../../../Assctes/teamMember/mahady.png'
 import anik from '../../../Assctes/teamMember/anik.jpeg'
+import jannatul from '../../../Assctes/teamMember/jannatul.jpeg'
+import jabbar from '../../../Assctes/teamMember/jabbar.jpeg'
+import tasin from '../../../Assctes/teamMember/tasin.jpeg'
 
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
 
@@ -80,7 +83,34 @@ const Team = () => {
                   "gender": "male"
             },
             {
+                  "id": 5,
+                  "img": jabbar,
+                  "name": "Md Jabbar Hosen",
+                  "email": "jabbar@brightfuturesoft.com",
+                  "post": "Digital Marketer",
+                  "linkedIn": "https://www.linkedin.com/in/md-jabbar-hosen/",
+                  "gender": "male"
+            },
+            {
                   "id": 6,
+                  "img": tasin,
+                  "name": "Md Tasin Rahman",
+                  "email": "tasin@brightfuturesoft.com",
+                  "post": "Digital Marketer",
+                  "linkedIn": "https://www.linkedin.com/in/md-tasin-rahman/",
+                  "gender": "male"
+            },
+            {
+                  "id": 7,
+                  "img": jannatul,
+                  "name": "Jannatul Ferdous",
+                  "email": "jannatul@brightfuturesoft.com",
+                  "post": "Digital Marketer",
+                  "linkedIn": "https://www.linkedin.com/in/jannatul-ferdous/",
+                  "gender": "female"
+            },
+            {
+                  "id": 8,
                   "img": nahid,
                   "name": "Nahid Ferdaos",
                   "email": "nahid@brightfuturesoft.com",
@@ -89,7 +119,7 @@ const Team = () => {
                   "gender": "male"
             },
             {
-                  "id": 6,
+                  "id": 8,
                   "img": sarwar,
                   "name": "Sarwar Hossain",
                   "email": "sarwar@brightfuturesoft.com",
@@ -98,7 +128,7 @@ const Team = () => {
                   "gender": "male"
             },
             {
-                  "id": 6,
+                  "id": 9,
                   "img": mursed,
                   "name": "MH. Murshed",
                   "email": "mursed@brightfuturesoft.com",
@@ -107,7 +137,7 @@ const Team = () => {
                   "gender": "male"
             },
             {
-                  "id": 6,
+                  "id": 10,
                   "img": riky,
                   "name": "Uyemong Marma",
                   "email": "riky@brightfuturesoft.com",

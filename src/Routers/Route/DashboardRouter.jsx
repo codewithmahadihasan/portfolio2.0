@@ -102,6 +102,10 @@ export const dashboardRouter = [
       {
             path: "subscribers",
             element: <SubscribersTable />
+      },
+      {
+            path: "account",
+            element: <SubscribersTable />
       }
 
 ]
