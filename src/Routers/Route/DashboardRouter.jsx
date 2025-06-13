@@ -5,6 +5,7 @@ import TaskReport from "../../pages/Dashboard/Dashboard/Chart";
 import BlogManagement from "../../pages/Eployee/Blog_Management/BlogManagement";
 import Contact_management from "../../pages/Eployee/Contact/Contact_management";
 import SubscribersTable from "../../pages/Eployee/Contact/Subcriber_management";
+import EmployeeManagement from "../../pages/Eployee/EmployeeManagement/EmployeeManagement";
 import Issue from "../../pages/Eployee/Issue/AddNewIssue";
 import IssueList from "../../pages/Eployee/Issue/IsueList";
 import Apply_List from "../../pages/Eployee/JobPost/ApplyList";
@@ -106,6 +107,11 @@ export const dashboardRouter = [
       {
             path: "account",
             element: <SubscribersTable />
+      },
+      {
+            path: "employee-management",
+            element: <EmployeeManagement />
+
       }
 
 ]

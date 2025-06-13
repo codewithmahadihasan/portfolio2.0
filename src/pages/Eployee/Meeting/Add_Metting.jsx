@@ -9,7 +9,11 @@ import { useNavigate } from 'react-router-dom';
 
 const Add_Meting = () => {
       const { user } = useContext(AuthContext);
-      const [selectedUsers, setSelectedUsers] = useState([]);
+      const [selectedUsers, setSelectedUsers] = useState([{
+            name: user.name,
+            email: user.email,
+            image: user.image
+      }]);
       const [duration, setDuration] = useState(60); //
       const [upload, setUpload] = useState(false)
       const [uploading, set_uploading] = useState(false)
@@ -170,17 +174,8 @@ const Add_Meting = () => {
                                     type="number"
                                     value={duration}
                                     onChange={(e) => setDuration(Number(e.target.value))}
-                                    min={60}  // Minimum value
-                                    step={60} // Step increment/decrement
-                                    onBlur={(e) => {
-                                          // Ensure value is within predefined range on blur
-                                          const value = Number(e.target.value);
-                                          if (value < 60) {
-                                                setDuration(60);
-                                          } else if (value > 180) {
-                                                setDuration(180);
-                                          }
-                                    }}
+                                    min={10}  // Minimum value
+                                    step={10} // Step increment/decrement
                               />
 
                               <input className='w-full my-2 rounded bg-gray-900   text-white' name='link' placeholder='Provide here meeting link' type="text" />

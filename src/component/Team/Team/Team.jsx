@@ -7,15 +7,19 @@ import mahadi from '../../../Assctes/teamMember/mahadi.jpg';
 import hadi from '../../../Assctes/teamMember/mohotasimhadi.jpeg';
 import acccountManager from '../../../Assctes/teamMember/accountManager.jpeg';
 import sarwar from '../../../Assctes/teamMember/Sarwar.png';
-import nahid from '../../../Assctes/teamMember/nahid.jpeg';
 import shishir from '../../../Assctes/teamMember/shishir.jpeg'
 import riky from '../../../Assctes/teamMember/riky.png'
 import mursed from '../../../Assctes/teamMember/mursed.jpg'
 import mahady from '../../../Assctes/teamMember/mahady.png'
 import anik from '../../../Assctes/teamMember/anik.jpeg'
-import jannatul from '../../../Assctes/teamMember/jannatul.jpeg'
 import jabbar from '../../../Assctes/teamMember/jabbar.jpeg'
-import tasin from '../../../Assctes/teamMember/tasin.jpeg'
+import summon from '../../../Assctes/teamMember/summon.jpeg'
+import aysha from '../../../Assctes/teamMember/aysha.jpg'
+import nowshin from '../../../Assctes/teamMember/nowshin.jpeg'
+import nahid from '../../../Assctes/teamMember/nahid.jpeg'
+
+
+
 
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
 
@@ -48,8 +52,8 @@ const Team = () => {
             {
                   "id": 3,
                   "img": hadi,
-                  "name": "Mohotasim Hadi Rafi",
-                  "email": "hadi@brightfuturesoft.com",
+                  "name": "Mohotasim Hadi",
+                  "email": "advisor@brightfuturesoft.com",
                   "post": "Advisor",
                   "linkedIn": "https://www.linkedin.com/in/mohtasimhadi/",
                   "gender": "male"
@@ -74,11 +78,20 @@ const Team = () => {
                   "gender": "female"
             },
             {
+                  "id": 8,
+                  "img": summon,
+                  "name": "Md Sumon Shorker",
+                  "email": "sumon@brightfuturesoft.com",
+                  "post": "Lead and Sales Executive",
+                  "linkedIn": "https://www.linkedin.com/in/md-sumon-shorkar/",
+                  "gender": "male"
+            },
+            {
                   "id": 4,
                   "img": anik,
                   "name": "Md. Mahtab Uddin Anik",
                   "email": "anik@brightfuturesoft.com",
-                  "post": "Digital Marketer",
+                  "post": "Lead and Sales Executive",
                   "linkedIn": "https://www.linkedin.com/in/mahtab-anik",
                   "gender": "male"
             },
@@ -87,37 +100,29 @@ const Team = () => {
                   "img": jabbar,
                   "name": "Md Jabbar Hosen",
                   "email": "jabbar@brightfuturesoft.com",
-                  "post": "Digital Marketer",
+                  "post": "Lead and Sales Executive",
                   "linkedIn": "https://www.linkedin.com/in/md-jabbar-hosen/",
                   "gender": "male"
             },
             {
                   "id": 6,
-                  "img": tasin,
-                  "name": "Md Tasin Rahman",
-                  "email": "tasin@brightfuturesoft.com",
-                  "post": "Digital Marketer",
-                  "linkedIn": "https://www.linkedin.com/in/md-tasin-rahman/",
-                  "gender": "male"
-            },
-            {
-                  "id": 7,
-                  "img": jannatul,
-                  "name": "Jannatul Ferdous",
-                  "email": "jannatul@brightfuturesoft.com",
-                  "post": "Digital Marketer",
-                  "linkedIn": "https://www.linkedin.com/in/jannatul-ferdous/",
+                  "img": aysha,
+                  "name": "Ayesha Rahman",
+                  "email": "ayesha@brightfuturesoft.com",
+                  "post": "Lead and Sales Executive",
+                  "linkedIn": "https://www.linkedin.com/in/ayesha-rahman-a78b631b2/",
                   "gender": "female"
             },
             {
-                  "id": 8,
-                  "img": nahid,
-                  "name": "Nahid Ferdaos",
-                  "email": "nahid@brightfuturesoft.com",
-                  "post": "Software Engineer",
-                  "linkedIn": "https://www.linkedin.com/in/nahid-ferdaos/",
-                  "gender": "male"
+                  "id": 7,
+                  "img": nowshin,
+                  "name": "Nowshin Jahan",
+                  "email": "nowshin@brightfuturesoft.com",
+                  "post": "Lead and Sales Executive",
+                  "linkedIn": "https://www.linkedin.com/in/nowshinjahan/",
+                  "gender": "female"
             },
+
             {
                   "id": 8,
                   "img": sarwar,
@@ -128,6 +133,14 @@ const Team = () => {
                   "gender": "male"
             },
             {
+                  "id": 8,
+                  "img": nahid,
+                  "name": "Nahid Ferdous",
+                  "email": "nahid@brightfuturesoft.com",
+                  "post": "Lead and Sales Executive",
+                  "linkedIn": "https://www.linkedin.com/in/nahid-ferdaos/",
+                  "gender": "female"
+            }, {
                   "id": 9,
                   "img": mursed,
                   "name": "MH. Murshed",
@@ -148,6 +161,7 @@ const Team = () => {
 
 
       ]
+
       return (
             <div className=" team-bg">
                   <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
