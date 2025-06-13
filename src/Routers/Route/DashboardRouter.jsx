@@ -2,6 +2,7 @@ import AdminBlogForm from "../../component/Blog/AdminBlogForm";
 import ProjectList from "../../component/Project/AdminProject/ProjectList";
 import { base_url } from "../../layout/Title";
 import TaskReport from "../../pages/Dashboard/Dashboard/Chart";
+import Account_management from "../../pages/Eployee/Accounts/Account_management";
 import BlogManagement from "../../pages/Eployee/Blog_Management/BlogManagement";
 import Contact_management from "../../pages/Eployee/Contact/Contact_management";
 import SubscribersTable from "../../pages/Eployee/Contact/Subcriber_management";
@@ -106,7 +107,7 @@ export const dashboardRouter = [
       },
       {
             path: "account",
-            element: <SubscribersTable />
+            element: <Account_management />
       },
       {
             path: "employee-management",
