@@ -61,6 +61,20 @@ const Contact_management = () => {
 
       // Handle status update
       const handleStatusUpdate = (id, newStatus) => {
+            fetch(`${base_url}/contact/update-contact?contact_id=${id}`, {
+                  method: 'PUT',
+                  headers: {
+                        "content-type": "application/json",
+                        author: "bright_future_soft",
+                  },
+                  body: JSON.stringify({ status: newStatus }),
+            })
+                  .then(res => res.json())
+                  .then(data => {
+                        if (data.success) {
+                              refetch();
+                        }
+                  })
             // In a real app, you would call an API to update the status
       }
 
@@ -158,8 +172,7 @@ const Contact_management = () => {
                                                                   className="text-sm rounded-md bg-transparent border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-opacity-50"
                                                             >
                                                                   <option value="pending">Pending</option>
-                                                                  <option value="in-progress">In Progress</option>
-                                                                  <option value="completed">Completed</option>
+                                                                  <option value="contacted">Contacted</option>
                                                             </select>
                                                       </td>
                                                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
