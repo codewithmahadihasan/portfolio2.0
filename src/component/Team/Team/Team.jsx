@@ -62,7 +62,7 @@ const Team = () => {
                   "id": 3,
                   "img": mahady,
                   "name": "Mahady Hasan",
-                  "email": "mahady@brightfuturesoft.com",
+                  "email": "crm@brightfuturesoft.com",
                   "post": "Client Relationship Manager",
                   "linkedIn": "https://www.linkedin.com/in/mhasan878/",
                   "gender": "male"
