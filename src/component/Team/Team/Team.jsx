@@ -7,7 +7,7 @@ import mahadi from '../../../Assctes/teamMember/mahadi.jpg';
 import hadi from '../../../Assctes/teamMember/mohotasimhadi.jpeg';
 import acccountManager from '../../../Assctes/teamMember/accountManager.jpeg';
 import sarwar from '../../../Assctes/teamMember/Sarwar.png';
-import shishir from '../../../Assctes/teamMember/shishir.jpeg'
+import shishir from '../../../Assctes/teamMember/shishir_vai.png'
 import riky from '../../../Assctes/teamMember/riky.png'
 import mursed from '../../../Assctes/teamMember/mursed.jpg'
 import mahady from '../../../Assctes/teamMember/mahady.png'
