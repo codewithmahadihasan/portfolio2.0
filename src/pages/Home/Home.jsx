@@ -15,6 +15,7 @@ import { useEffect } from 'react';
 import Title from '../../layout/Title';
 import News_Letter from '../../component/Testimonials/Testimonials/News_Letter';
 import MetaTitle from '../../layout/Title';
+import Partner from '../../component/Testimonials/Testimonials/Partner';
 
 const Home = () => {
       useEffect(() => {
@@ -36,7 +37,7 @@ const Home = () => {
                   <Team></Team>
                   <Testimonial />
                   <Contact />
-
+                  <Partner />
                   <News_Letter />
 
             </div>

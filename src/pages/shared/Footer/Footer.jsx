@@ -77,6 +77,9 @@ const Footer = () => {
                                                       <li className='mt-3 md:text-left text-center'>
                                                             <Link to={'/project/bright_restaurant_pos'} className="text-[#00bfff]  hover:border-b-2 hover:border-blue-500">POS</Link>
                                                       </li>
+                                                      <li className='mt-3 md:text-left text-center'>
+                                                            <Link to={'/project/bright_lms__transforming_learning_experiences'} className="text-[#00bfff]  hover:border-b-2 hover:border-blue-500">Bright LMS</Link>
+                                                      </li>
                                                       {/* <li className='mt-3 md:text-left text-center'>
                                                   <Link to='' className="text-[#00bfff]  hover:border-b-2 hover:border-blue-500">Resume Builder</Link>
                                              </li>
