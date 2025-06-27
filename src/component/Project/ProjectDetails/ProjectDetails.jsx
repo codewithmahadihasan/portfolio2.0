@@ -34,7 +34,9 @@ const ProjectDetails = () => {
             window.scrollTo(0, 0);
       }, []);
 
-
+      useEffect(() => {
+            refetch()
+      }, [id])
 
 
       const isWhite = project?.description?.includes('black');
@@ -88,7 +90,7 @@ const ProjectDetails = () => {
                                                       </div>
                                                 </div>
                                           </aside>
-                                          <article className="mt-12 prose lg:mt-0  custom-article lg:prose-lg lg:col-span-8 prose-blockquote:lg:text-xl prose-blockquote:lg:leading-9 prose-blockquote:not-italic prose-blockquote:border-none prose-blockquote:text-lg prose-blockquote:leading-8 prose-blockquote:p-0 prose-blockquote:lg:p-0 prose-blockquote:font-medium prose-blockquote:text-gray-900" dangerouslySetInnerHTML={{
+                                          <article className="mt-12 prose lg:mt-0   custom-article lg:prose-lg lg:col-span-8 prose-blockquote:lg:text-xl prose-blockquote:lg:leading-9 prose-blockquote:not-italic prose-blockquote:border-none prose-blockquote:text-lg prose-blockquote:leading-8 prose-blockquote:p-0 prose-blockquote:lg:p-0 prose-blockquote:font-medium prose-blockquote:text-gray-900" dangerouslySetInnerHTML={{
                                                 __html: project?.description || '',
                                           }} >
 

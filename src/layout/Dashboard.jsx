@@ -113,6 +113,29 @@ const Dashboard = () => {
                         <span className="text-sm font-medium"> Your Task </span>
                   </NavLink>
                   <NavLink
+                        to={'/dashboard/client_meetings'}
+                        className={({ isActive }) => isActive
+                              ? 'bg-indigo-600 text-white flex items-center w-full rounded gap-2 border-s-[3px] border-transparent px-4 py-3'
+                              : "flex items-center w-full rounded gap-2 border-s-[3px] border-transparent px-4 py-3 hover:border-gray-100 border border-gray-500 hover:bg-indigo-600 hover:text-white"}
+                        onClick={() => setMobileMenuOpen(false)}
+                  >
+                        <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-5 w-5 opacity-75"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              strokeWidth={2}
+                        >
+                              <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                              />
+                        </svg>
+                        <span className="text-sm font-medium"> Client Meeting </span>
+                  </NavLink>
+                  <NavLink
                         to={'/dashboard/meeting_management'}
                         className={({ isActive }) => isActive
                               ? 'bg-indigo-600 text-white flex items-center w-full rounded gap-2 border-s-[3px] border-transparent px-4 py-3'

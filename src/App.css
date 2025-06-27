@@ -720,3 +720,13 @@ div.message-of-doc {
             clip-path: inset(30% 0 40% 0);
       }
 }
+
+
+.jodit-editor__container {
+      background-color: #020a1c !important;
+      color: white !important;
+}
+
+.jodit-status-bar-link {
+     display: none !important;
+}

@@ -4,6 +4,7 @@ import { base_url } from "../../layout/Title";
 import TaskReport from "../../pages/Dashboard/Dashboard/Chart";
 import Account_management from "../../pages/Eployee/Accounts/Account_management";
 import BlogManagement from "../../pages/Eployee/Blog_Management/BlogManagement";
+import Client_Meeting from "../../pages/Eployee/Client_meeting/Client_Meeting";
 import Contact_management from "../../pages/Eployee/Contact/Contact_management";
 import SubscribersTable from "../../pages/Eployee/Contact/Subcriber_management";
 import EmployeeManagement from "../../pages/Eployee/EmployeeManagement/EmployeeManagement";
@@ -56,6 +57,10 @@ export const dashboardRouter = [
       {
             path: "meeting_management",
             element: <MeetingManagement />
+      },
+      {
+            path: "client_meetings",
+            element: <Client_Meeting />
       },
       {
             path: "meeting_management/new",
