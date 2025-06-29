@@ -138,62 +138,67 @@ const JobManagement = () => {
                             description */}
 
 
-                                          <div class="flow-root mt-8">
-                                                <div class="-my-5 divide-y divide-gray-200">
-                                                      {job_data?.map((job) => (
-                                                            <div key={job._id} class="py-5">
-                                                                  <div class="sm:flex sm:items-center sm:justify-between sm:space-x-5">
-                                                                        <div class="flex items-center flex-1 min-w-0">
-                                                                              <p class="text-sm font-bold text-gray-100 truncate ">{job?.job_position}</p>
-
-
-                                                                        </div>
-                                                                        <div class="flex-1 min-w-0 ml-4 ">
-                                                                              <p className="text-sm font-bold text-gray-100 truncate">{job?.workplace}</p>
-                                                                              <p class="mt-1 text-sm font-medium text-gray-500 truncate">{job?.vacancy}</p>
-                                                                        </div>
-                                                                        <div class="flex-1 min-w-0 ml-4 ">
-                                                                              <p class="text-sm font-bold text-gray-100 truncate ">{job?.job_type}</p>
-                                                                              <p className="mt-1 text-sm font-medium text-gray-500 truncate">Apply: {job.application_count ?? 0}</p>
-                                                                        </div>
-
-                                                                        <div class="flex items-center justify-between mt-4 sm:space-x-6 pl-14 sm:pl-0 sm:justify-end sm:mt-0">
-                                                                              <Link to={`/dashboard/job-management/apply_list?job_post_id=${job._id}`} title="" class="text-sm font-medium text-gray-400 transition-all duration-200 hover:text-gray-500"> Apply List </Link>
-
-                                                                              <div className=''>
-                                                                                    <div className="flex gap-3 items-center  ">
-
+                                          <div className="flow-root mt-8">
+                                                <div className="-my-5 divide-y divide-gray-200">
+                                                      <table className="min-w-full divide-y divide-gray-700">
+                                                            <thead className="bg-gray-800">
+                                                                  <tr>
+                                                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Job Position</th>
+                                                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Job Type</th>
+                                                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Workplace</th>
+                                                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Vacancy</th>
+                                                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Deadline</th>
+                                                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Application</th>
+                                                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Actions</th>
+                                                                  </tr>
+                                                            </thead>
+                                                            <tbody className="bg-gray-900 divide-y divide-gray-800">
+                                                                  {job_data?.map((job) => (
+                                                                        <tr key={job._id} className="py-2 divide-y divide-gray-800">
+                                                                              <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-100">{job?.job_position}</td>
+                                                                              <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-100">{job?.job_type}</td>
+                                                                              <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-100">{job?.workplace}</td>
+                                                                              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-100">{job?.vacancy}</td>
+                                                                              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-100">{new Date(job?.dateline).toDateString()}</td>
+                                                                              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-100">
+                                                                                    <Link
+                                                                                          to={`/dashboard/job-management/apply_list?job_post_id=${job._id}`}
+                                                                                          title="See Applications"
+                                                                                          className="text-sm font-medium text-blue-400 transition-all duration-200 hover:text-blue-500"
+                                                                                    >
+                                                                                          Application List: {job.application_count ?? 0}
+                                                                                    </Link>
+                                                                              </td>
+                                                                              <td className="px-6 py-4  text-sm text-gray-100">
+                                                                                    <div className="flex gap-3 items-center">
                                                                                           <button
                                                                                                 onClick={() => setEditJob(job)}
                                                                                                 type="button"
-                                                                                                className="inline-flex whitespace-nowrap items-center justify-center px-6 py-3 text-sm font-semibold leading-5 text-white transition-all duration-200 bg-indigo-600 border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 hover:bg-indigo-500"
+                                                                                                className="inline-flex whitespace-nowrap items-center justify-center px-4 py-2 text-sm font-semibold leading-5 text-white transition-all duration-200 bg-indigo-600 border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 hover:bg-indigo-500"
                                                                                           >
                                                                                                 Edit
                                                                                           </button>
-
                                                                                           <button
                                                                                                 onClick={() => delete_meeting(job._id)}
                                                                                                 type="button"
-                                                                                                className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold leading-5 text-white transition-all duration-200 bg-red-500 border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 hover:bg-red-700"
+                                                                                                className="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold leading-5 text-white transition-all duration-200 bg-red-500 border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 hover:bg-red-700"
                                                                                           >
                                                                                                 Delete
                                                                                           </button>
-
-
                                                                                     </div>
+                                                                              </td>
+                                                                        </tr>
+                                                                  ))}
+                                                            </tbody>
+                                                      </table>
 
-                                                                              </div>
-                                                                        </div>
-                                                                  </div>
-                                                            </div>
-                                                      ))
-                                                      }
+                                                      {/* Edit Modal */}
                                                       {edit_job && (
                                                             <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
                                                                   <div className="bg-gray-900 text-white rounded-lg shadow-lg p-6 w-11/12 max-w-4xl max-h-[90vh] overflow-y-auto">
-                                                                        <form onSubmit={jobForm} className='w-full'>
+                                                                        <form onSubmit={jobForm} className="w-full">
                                                                               <div className="flex justify-between items-center mb-4">
-                                                                                    <h1 className='text-2xl font-bold text-white'>Edit Job Post</h1>
+                                                                                    <h1 className="text-2xl font-bold text-white">Edit Job Post</h1>
                                                                                     <button
                                                                                           type="button"
                                                                                           onClick={() => setEditJob(false)}
@@ -203,25 +208,63 @@ const JobManagement = () => {
                                                                                     </button>
                                                                               </div>
 
-                                                                              <input defaultValue={edit_job?.job_position} className='w-full my-2 rounded p-2 text-black' name='job_position' placeholder='Job Position' type="text" />
-                                                                              <input value={edit_job?.job_type} className='w-full my-2 rounded p-2 text-black' name='job_type' placeholder='Job Type' type="text" />
-                                                                              <input value={edit_job?.workplace} className='w-full my-2 rounded p-2 text-black' name='workplace' placeholder='Workplace Type' type="text" />
-                                                                              <input value={edit_job?.vacancy} className='w-full my-2 rounded p-2 text-black' name='vacancy' placeholder='Vacancy' type="text" />
-                                                                              <input value={edit_job?.dateline} className='w-full my-2 rounded p-2 text-black' name='last_date' placeholder='Last Date' type="date" />
+                                                                              <input
+                                                                                    defaultValue={edit_job?.job_position}
+                                                                                    className="w-full my-2 rounded p-2  bg-gray-900"
+                                                                                    name="job_position"
+                                                                                    placeholder="Job Position"
+                                                                                    type="text"
+                                                                              />
+                                                                              <input
+                                                                                    value={edit_job?.job_type}
+                                                                                    className="w-full my-2 rounded p-2 bg-gray-900"
+                                                                                    name="job_type"
+                                                                                    placeholder="Job Type"
+                                                                                    type="text"
+                                                                                    onChange={() => { }} // Needed if controlled
+                                                                              />
+                                                                              <input
+                                                                                    value={edit_job?.workplace}
+                                                                                    className="w-full my-2 rounded p-2 bg-gray-900"
+                                                                                    name="workplace"
+                                                                                    placeholder="Workplace Type"
+                                                                                    type="text"
+                                                                                    onChange={() => { }} // Needed if controlled
+                                                                              />
+                                                                              <input
+                                                                                    value={edit_job?.vacancy}
+                                                                                    className="w-full my-2 rounded p-2 bg-gray-900"
+                                                                                    name="vacancy"
+                                                                                    placeholder="Vacancy"
+                                                                                    type="text"
+                                                                                    onChange={() => { }} // Needed if controlled
+                                                                              />
+                                                                              <input
+                                                                                    value={edit_job?.dateline}
+                                                                                    className="w-full my-2 rounded p-2 bg-gray-900"
+                                                                                    name="last_date"
+                                                                                    placeholder="Last Date"
+                                                                                    type="date"
+                                                                                    onChange={() => { }} // Needed if controlled
+                                                                              />
 
-                                                                              <div className='my-4'>
-                                                                                    <JoditEditor config={{
-                                                                                          readonly: false,
-                                                                                          theme: 'dark',
-                                                                                          style: {
-                                                                                                backgroundColor: '#000',
-                                                                                                color: '#fff'
-                                                                                          }
-                                                                                    }} value={edit_job?.description} name='description' className='rounded bg-dark text-white jodit-editor' />
+                                                                              <div className="my-4">
+                                                                                    <JoditEditor
+                                                                                          config={{
+                                                                                                readonly: false,
+                                                                                                style: {
+                                                                                                      backgroundColor: '#111827',
+                                                                                                      color: '#fff',
+                                                                                                },
+                                                                                          }}
+                                                                                          value={edit_job?.description}
+                                                                                          name="description"
+                                                                                          className="rounded bg-dark text-white jodit-editor"
+                                                                                    />
                                                                               </div>
 
                                                                               <button
-                                                                                    type='submit'
+                                                                                    type="submit"
                                                                                     className="group flex items-center justify-center gap-4 w-full border border-indigo-600 bg-indigo-600 px-10 py-3 transition-colors hover:bg-transparent focus:outline-none focus:ring"
                                                                               >
                                                                                     <span className="font-medium text-white group-hover:text-indigo-600 group-active:text-indigo-500">
@@ -232,8 +275,6 @@ const JobManagement = () => {
                                                                   </div>
                                                             </div>
                                                       )}
-
-
                                                 </div>
                                           </div>
 
