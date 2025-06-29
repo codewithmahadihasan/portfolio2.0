@@ -10,7 +10,7 @@ const Account_management = () => {
 
       return (
             <div className="min-h-screen  py-8">
-                  <div className="max-w-5xl mx-auto px-4">
+                  <div className="max-w-5xl px-4">
                         <h1 className="text-3xl font-bold mb-6">Account Management</h1>
 
                         {/* Tabs */}

@@ -320,7 +320,7 @@ const Client_Meeting = () => {
                                     <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
                                           Client Meetings
                                     </h1>
-                                    <div className="p-1 bg-indigo-100 rounded-full">
+                                    <div className="p-1 bg-indigo-200 rounded-full">
                                           <svg
                                                 className="h-4 w-4 text-indigo-600"
                                                 fill="none"
@@ -348,7 +348,7 @@ const Client_Meeting = () => {
 
                         {/* Tabs and Actions */}
                         <div className="flex items-center justify-between">
-                              <div className="flex bg-white rounded-xl p-1 border-2 border-indigo-200 shadow-lg">
+                              <div className="flex bg-gray-900 rounded-xl p-1 border-2 border-gray-700 shadow-lg">
                                     {["upcoming", "pending", "past", "all", "date-range"].map(
                                           (filter) => (
                                                 <button
@@ -392,10 +392,10 @@ const Client_Meeting = () => {
 
                         {/* Date Range Picker */}
                         {showDateRange && (
-                              <div className="mt-4 p-4 bg-white rounded-xl border-2 border-indigo-200 shadow-lg">
+                              <div className="mt-4 p-4 bg-gray-900 rounded-xl border-2 border-gray-700 shadow-lg">
                                     <div className="flex items-center gap-4">
                                           <div>
-                                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                                <label className="block text-sm font-medium text-gray-300 mb-1">
                                                       Start Date
                                                 </label>
                                                 <input
@@ -404,11 +404,11 @@ const Client_Meeting = () => {
                                                       onChange={(e) =>
                                                             setDateRange({ ...dateRange, start: e.target.value })
                                                       }
-                                                      className="border-2 border-indigo-200 rounded-lg px-3 py-2 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
+                                                      className="border border-gray-700 rounded-lg px-3 bg-gray-900 py-2 "
                                                 />
                                           </div>
                                           <div>
-                                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                                <label className="block text-sm font-medium text-gray-300 mb-1">
                                                       End Date
                                                 </label>
                                                 <input
@@ -417,7 +417,7 @@ const Client_Meeting = () => {
                                                       onChange={(e) =>
                                                             setDateRange({ ...dateRange, end: e.target.value })
                                                       }
-                                                      className="border-2 border-indigo-200 rounded-lg px-3 py-2 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
+                                                      className="border border-gray-700 rounded-lg px-3 bg-gray-900 py-2 "
                                                 />
                                           </div>
                                           <button
@@ -426,7 +426,7 @@ const Client_Meeting = () => {
                                                       setActiveFilter("upcoming");
                                                       setShowDateRange(false);
                                                 }}
-                                                className="mt-6 px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg text-gray-700 transition-colors duration-200"
+                                                className="mt-6 px-4 py-2 border border-gray-700 rounded-lg hover:bg-gray-800 hover:text-white bg-gray-900  transition-colors duration-200"
                                           >
                                                 Clear
                                           </button>
@@ -642,9 +642,9 @@ const Client_Meeting = () => {
                                                                                     </div>
                                                                                     {/* Expanded Details */}
                                                                                     {isExpanded && (
-                                                                                          <div className="mt-6 pt-6 border-t border-gray-200 space-y-6 animate-slideDown">
+                                                                                          <div className="mt-6 pt-6 border-t border-gray-700 space-y-6 animate-slideDown">
                                                                                                 {/* Invitee Info */}
-                                                                                                <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-4 rounded-xl">
+                                                                                                <div className="bg-gradient-to-br from-indigo-200 to-purple-300 p-4 rounded-xl">
                                                                                                       <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
                                                                                                             <svg
                                                                                                                   className="h-5 w-5 text-indigo-600"
@@ -693,7 +693,7 @@ const Client_Meeting = () => {
                                                                                                       )}
                                                                                                 </div>
                                                                                                 {/* Location Info */}
-                                                                                                <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-4 rounded-xl">
+                                                                                                <div className="bg-gradient-to-br from-green-200 to-emerald-300 p-4 rounded-xl">
                                                                                                       <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
                                                                                                             <svg
                                                                                                                   className="h-5 w-5 text-green-600"
@@ -802,153 +802,157 @@ const Client_Meeting = () => {
                         )}
                   </div>
                   {/* Modal */}
-                  {modalOpen && selectedMeeting && (
-                        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-                              <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-                                    <div className="p-6 border-b border-gray-200">
-                                          <div className="flex items-center justify-between">
-                                                <h2 className="text-2xl font-bold text-gray-900">
-                                                      {selectedMeeting.name}
-                                                </h2>
-                                                <button
-                                                      onClick={closeModal}
-                                                      className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200"
-                                                >
-                                                      <svg
-                                                            className="h-6 w-6 text-gray-400"
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            viewBox="0 0 24 24"
+                  {
+                        modalOpen && selectedMeeting && (
+                              <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+                                    <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+                                          <div className="p-6 border-b border-gray-200">
+                                                <div className="flex items-center justify-between">
+                                                      <h2 className="text-2xl font-bold text-gray-900">
+                                                            {selectedMeeting.name}
+                                                      </h2>
+                                                      <button
+                                                            onClick={closeModal}
+                                                            className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200"
                                                       >
-                                                            <path
-                                                                  strokeLinecap="round"
-                                                                  strokeLinejoin="round"
-                                                                  strokeWidth={2}
-                                                                  d="M6 18L18 6M6 6l12 12"
-                                                            />
-                                                      </svg>
-                                                </button>
-                                          </div>
-                                    </div>
-                                    <div className="p-6 space-y-6">
-                                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                                <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-4 rounded-xl">
-                                                      <label className="block text-sm font-bold text-gray-900 mb-2">
-                                                            Start Time
-                                                      </label>
-                                                      <p className="text-gray-800 font-medium">
-                                                            {new Date(selectedMeeting.start_time).toLocaleString()}
-                                                      </p>
-                                                </div>
-                                                <div className="bg-gradient-to-br from-red-50 to-pink-50 p-4 rounded-xl">
-                                                      <label className="block text-sm font-bold text-gray-900 mb-2">
-                                                            End Time
-                                                      </label>
-                                                      <p className="text-gray-800 font-medium">
-                                                            {new Date(selectedMeeting.end_time).toLocaleString()}
-                                                      </p>
+                                                            <svg
+                                                                  className="h-6 w-6 text-gray-400"
+                                                                  fill="none"
+                                                                  stroke="currentColor"
+                                                                  viewBox="0 0 24 24"
+                                                            >
+                                                                  <path
+                                                                        strokeLinecap="round"
+                                                                        strokeLinejoin="round"
+                                                                        strokeWidth={2}
+                                                                        d="M6 18L18 6M6 6l12 12"
+                                                                  />
+                                                            </svg>
+                                                      </button>
                                                 </div>
                                           </div>
-                                          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-4 rounded-xl">
-                                                <label className="block text-sm font-bold text-gray-900 mb-2">
-                                                      Status
-                                                </label>
-                                                <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
-                                                      {selectedMeeting.status || "Confirmed"}
-                                                </span>
-                                          </div>
-                                          <div className="flex gap-3 pt-4">
-                                                <button
-                                                      onClick={closeModal}
-                                                      className="flex-1 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white py-3 px-6 rounded-xl font-medium transition-all duration-200 shadow-md hover:shadow-lg"
-                                                >
-                                                      Close
-                                                </button>
-                                                <button className="flex-1 bg-white border-2 border-indigo-200 hover:border-indigo-400 text-indigo-600 hover:text-indigo-800 py-3 px-6 rounded-xl font-medium transition-all duration-200">
-                                                      Edit Meeting
-                                                </button>
+                                          <div className="p-6 space-y-6">
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                      <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-4 rounded-xl">
+                                                            <label className="block text-sm font-bold text-gray-900 mb-2">
+                                                                  Start Time
+                                                            </label>
+                                                            <p className="text-gray-800 font-medium">
+                                                                  {new Date(selectedMeeting.start_time).toLocaleString()}
+                                                            </p>
+                                                      </div>
+                                                      <div className="bg-gradient-to-br from-red-50 to-pink-50 p-4 rounded-xl">
+                                                            <label className="block text-sm font-bold text-gray-900 mb-2">
+                                                                  End Time
+                                                            </label>
+                                                            <p className="text-gray-800 font-medium">
+                                                                  {new Date(selectedMeeting.end_time).toLocaleString()}
+                                                            </p>
+                                                      </div>
+                                                </div>
+                                                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-4 rounded-xl">
+                                                      <label className="block text-sm font-bold text-gray-900 mb-2">
+                                                            Status
+                                                      </label>
+                                                      <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                                                            {selectedMeeting.status || "Confirmed"}
+                                                      </span>
+                                                </div>
+                                                <div className="flex gap-3 pt-4">
+                                                      <button
+                                                            onClick={closeModal}
+                                                            className="flex-1 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white py-3 px-6 rounded-xl font-medium transition-all duration-200 shadow-md hover:shadow-lg"
+                                                      >
+                                                            Close
+                                                      </button>
+                                                      <button className="flex-1 bg-white border-2 border-indigo-200 hover:border-indigo-400 text-indigo-600 hover:text-indigo-800 py-3 px-6 rounded-xl font-medium transition-all duration-200">
+                                                            Edit Meeting
+                                                      </button>
+                                                </div>
                                           </div>
                                     </div>
                               </div>
-                        </div>
-                  )}
+                        )
+                  }
                   {/* Reschedule Modal */}
-                  {showRescheduleModal && rescheduleMeeting && (
-                        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-                              <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto">
-                                    <div className="p-6 border-b border-gray-200">
-                                          <div className="flex items-center justify-between">
-                                                <h2 className="text-xl font-bold text-gray-900">
-                                                      Reschedule Meeting
-                                                </h2>
-                                                <button
-                                                      onClick={closeRescheduleModal}
-                                                      className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200"
-                                                >
-                                                      <svg
-                                                            className="h-6 w-6 text-gray-400"
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            viewBox="0 0 24 24"
+                  {
+                        showRescheduleModal && rescheduleMeeting && (
+                              <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+                                    <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto">
+                                          <div className="p-6 border-b border-gray-200">
+                                                <div className="flex items-center justify-between">
+                                                      <h2 className="text-xl font-bold text-gray-900">
+                                                            Reschedule Meeting
+                                                      </h2>
+                                                      <button
+                                                            onClick={closeRescheduleModal}
+                                                            className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200"
                                                       >
-                                                            <path
-                                                                  strokeLinecap="round"
-                                                                  strokeLinejoin="round"
-                                                                  strokeWidth={2}
-                                                                  d="M6 18L18 6M6 6l12 12"
-                                                            />
-                                                      </svg>
-                                                </button>
+                                                            <svg
+                                                                  className="h-6 w-6 text-gray-400"
+                                                                  fill="none"
+                                                                  stroke="currentColor"
+                                                                  viewBox="0 0 24 24"
+                                                            >
+                                                                  <path
+                                                                        strokeLinecap="round"
+                                                                        strokeLinejoin="round"
+                                                                        strokeWidth={2}
+                                                                        d="M6 18L18 6M6 6l12 12"
+                                                                  />
+                                                            </svg>
+                                                      </button>
+                                                </div>
                                           </div>
-                                    </div>
-                                    <div className="p-6 space-y-4">
-                                          <div>
-                                                <label className="block text-sm font-medium text-gray-700 mb-1">
-                                                      New Date
-                                                </label>
-                                                <input
-                                                      type="date"
-                                                      value={newDate}
-                                                      onChange={(e) => setNewDate(e.target.value)}
-                                                      className="border-2 border-indigo-200 rounded-lg px-3 py-2 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
-                                                />
-                                          </div>
-                                          <div>
-                                                <label className="block text-sm font-medium text-gray-700 mb-1">
-                                                      New Time
-                                                </label>
-                                                <input
-                                                      type="time"
-                                                      value={newTime}
-                                                      onChange={(e) => setNewTime(e.target.value)}
-                                                      className="border-2 border-indigo-200 rounded-lg px-3 py-2 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
-                                                />
-                                          </div>
-                                          <div className="flex gap-3 pt-2">
-                                                <button
-                                                      onClick={closeRescheduleModal}
-                                                      className="flex-1 bg-gray-200 hover:bg-gray-300 rounded-lg py-2 text-gray-700 transition-colors duration-200"
-                                                >
-                                                      Cancel
-                                                </button>
-                                                <button
-                                                      onClick={handleReschedule}
-                                                      disabled={actionLoading[rescheduleMeeting.uri]}
-                                                      className="flex-1 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white rounded-lg py-2 font-medium transition-all duration-200 shadow-md hover:shadow-lg disabled:opacity-60"
-                                                >
-                                                      {actionLoading[rescheduleMeeting.uri]
-                                                            ? "Rescheduling..."
-                                                            : "Reschedule"}
-                                                </button>
-                                          </div>
-                                          <div className="text-xs text-gray-500 pt-2">
-                                                <strong>Note:</strong> Calendly API does not support direct rescheduling. This will cancel the meeting with a note to reschedule; you must create a new meeting for the new time.
+                                          <div className="p-6 space-y-4">
+                                                <div>
+                                                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                                                            New Date
+                                                      </label>
+                                                      <input
+                                                            type="date"
+                                                            value={newDate}
+                                                            onChange={(e) => setNewDate(e.target.value)}
+                                                            className="border-2 border-indigo-200 rounded-lg px-3 py-2 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
+                                                      />
+                                                </div>
+                                                <div>
+                                                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                                                            New Time
+                                                      </label>
+                                                      <input
+                                                            type="time"
+                                                            value={newTime}
+                                                            onChange={(e) => setNewTime(e.target.value)}
+                                                            className="border-2 border-indigo-200 rounded-lg px-3 py-2 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
+                                                      />
+                                                </div>
+                                                <div className="flex gap-3 pt-2">
+                                                      <button
+                                                            onClick={closeRescheduleModal}
+                                                            className="flex-1 bg-gray-200 hover:bg-gray-300 rounded-lg py-2 text-gray-700 transition-colors duration-200"
+                                                      >
+                                                            Cancel
+                                                      </button>
+                                                      <button
+                                                            onClick={handleReschedule}
+                                                            disabled={actionLoading[rescheduleMeeting.uri]}
+                                                            className="flex-1 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white rounded-lg py-2 font-medium transition-all duration-200 shadow-md hover:shadow-lg disabled:opacity-60"
+                                                      >
+                                                            {actionLoading[rescheduleMeeting.uri]
+                                                                  ? "Rescheduling..."
+                                                                  : "Reschedule"}
+                                                      </button>
+                                                </div>
+                                                <div className="text-xs text-gray-500 pt-2">
+                                                      <strong>Note:</strong> Calendly API does not support direct rescheduling. This will cancel the meeting with a note to reschedule; you must create a new meeting for the new time.
+                                                </div>
                                           </div>
                                     </div>
                               </div>
-                        </div>
-                  )}
-            </div>
+                        )
+                  }
+            </div >
       );
 };
 
