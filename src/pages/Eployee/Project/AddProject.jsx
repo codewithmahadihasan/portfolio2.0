@@ -328,7 +328,15 @@ const AddProject = () => {
 
 
                                     <div>
-                                          <JoditEditor name='message'
+                                          <JoditEditor config={{
+                                                readonly: false,
+                                                theme: 'dark',
+                                                style: {
+                                                      backgroundColor: '#000',
+                                                      color: '#fff'
+                                                }
+                                          }}
+                                                name='message'
                                                 id="message" rows={20} className='rounded jodit-bg  h-[510px] t jodit-editor' />
                                     </div>
                                     <br />

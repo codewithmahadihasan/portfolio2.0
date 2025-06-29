@@ -110,7 +110,7 @@ const EmployeeManagement = () => {
 
       return (
             <div className="container mx-auto px-4 py-8">
-                  <h1 className="text-3xl font-bold mb-8 text-gray-800">Employee Management</h1>
+                  <h1 className="text-3xl font-bold mb-8 text-gray-100">Employee Management</h1>
 
                   <div className="mb-4">
                         <Link_Button name={'Add New Employee'} url={'/sign_up'} />
@@ -125,7 +125,7 @@ const EmployeeManagement = () => {
                               {all_users.map((user) => (
                                     <div
                                           key={user._id}
-                                          className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow"
+                                          className=" rounded-lg relative shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow"
                                     >
                                           <div className="p-6">
                                                 <div className="flex items-center justify-between mb-4">
@@ -134,7 +134,7 @@ const EmployeeManagement = () => {
                                                                   <img
                                                                         src={user.image || "/placeholder.svg"}
                                                                         alt={user.name}
-                                                                        className="w-12 h-12 rounded-full object-cover mr-4"
+                                                                        className="w-12 h-12 rounded object-cover mr-4"
                                                                   />
                                                             ) : (
                                                                   <div className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center mr-4">
@@ -142,19 +142,19 @@ const EmployeeManagement = () => {
                                                                   </div>
                                                             )}
                                                             <div>
-                                                                  <h3 className="font-semibold text-lg text-gray-800">{user.name}</h3>
+                                                                  <h3 className="font-semibold text-lg text-gray-100">{user.name}</h3>
                                                                   <p className="text-sm text-gray-600">{user.email}</p>
                                                             </div>
                                                       </div>
                                                 </div>
 
                                                 <div className="mt-2 mb-4">
-                                                      <span className="inline-block px-3 py-1  text-sm font-medium rounded-full bg-blue-100 text-blue-800">
+                                                      <span className="inline-block px-3 py-1 capitalize  text-sm font-medium rounded-full bg-blue-100 text-blue-800">
                                                             {user.designation}
                                                       </span>
                                                 </div>
 
-                                                <div className="flex justify-end space-x-2 mt-4">
+                                                <div className="flex justify-end gap-2 absolute bottom-2 right-2">
                                                       <button
                                                             onClick={() => handleEdit(user)}
                                                             className="p-2 rounded-full bg-amber-50 text-amber-600 hover:bg-amber-100 transition-colors"

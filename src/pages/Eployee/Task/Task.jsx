@@ -147,10 +147,10 @@ function TaskManagement() {
 
 
       return (
-            <div className="bg-gray-50 min-h-screen">
-                  <div className="container mx-auto px-4 py-8">
+            <div className=" min-h-screen w-full">
+                  <div className=" px-4 py-8">
                         <div className="flex justify-between items-center mb-8">
-                              <h1 className="text-3xl font-bold text-gray-900">Task Management</h1>
+                              <h1 className="text-3xl font-bold text-gray-100">Task Management</h1>
                               <button
                                     onClick={() => setShowAddTaskModal(true)}
                                     className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors flex items-center"

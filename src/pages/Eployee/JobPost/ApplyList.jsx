@@ -84,11 +84,25 @@ const Apply_List = () => {
             return doc.body.textContent || '';
       };
 
-      // Example usage in JSX
-      // const descriptionText = ;
-      // const truncatedText = descriptionText.split(' ').slice(0, 10).join(' ');
+      const shortlist_status = (id, status) => {
+            fetch(`${base_url}/job-post/update-job-apply-status?job_apply_id=${id}&status=${status}`, {
+                  headers: {
+                        'content-type': 'application/json',
+                        'author': 'bright_future_soft'
+                  },
+                  method: 'PUT'
+            }).then(res => res.json())
+                  .then(data => {
+                        if (data.success) {
+                              Swal.fire(data.message, ' ', 'success')
+                              refetch()
+                        }
+                        else {
+                              Swal.fire(data.message, '', 'info')
+                        }
+                  })
 
-
+      };
       return (
             <div>
                   <div class="py-12  sm:py-16 lg:py-20">
@@ -188,7 +202,7 @@ const Apply_List = () => {
                                                 <div className="fixed inset-0 z-50 overflow-y-auto bg-black/50 backdrop-blur-sm transition-opacity duration-300">
                                                       <div className="flex items-center justify-center min-h-screen p-4">
                                                             <div
-                                                                  className="relative bg-gradient-to-br from-white to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-2xl shadow-2xl w-full max-w-md p-0 transform transition-all duration-300 scale-100 opacity-100"
+                                                                  className="relative bg-gradient-to-br from-white to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-2xl shadow-2xl w-full max-w-6xl p-0 transform transition-all duration-300 scale-100 opacity-100"
                                                                   style={{ animation: "modal-pop 0.3s ease-out" }}
                                                             >
                                                                   {/* Header with gradient */}
@@ -326,7 +340,7 @@ const Apply_List = () => {
                                                                               >
                                                                                     Close
                                                                               </button>
-                                                                              <button className="flex-1 bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-4 py-3 rounded-lg font-medium shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5">
+                                                                              <button onClick={() => shortlist_status(show._id, 'shortlisted')} className="flex-1 bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-4 py-3 rounded-lg font-medium shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5">
                                                                                     Contact Applicant
                                                                               </button>
                                                                         </div>

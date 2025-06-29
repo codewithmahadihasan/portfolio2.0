@@ -325,7 +325,7 @@ const ViewDetails = () => {
                                                                                           </div>
 
 
-                                                                                          {/* <div>
+                                                                                          <div>
                                                                                                 <label className="block text-sm font-medium text-gray-700">Phone Number </label>
                                                                                                 <div className="flex mt-2 w-full bg-white border rounded-md">
                                                                                                       <Select
@@ -344,8 +344,8 @@ const ViewDetails = () => {
                                                                                                             placeholder="Enter phone number"
                                                                                                       />
                                                                                                 </div>
-                                                                                          </div> */}
-                                                                                          <div className="w-full max-w-md">
+                                                                                          </div>
+                                                                                          {/* <div className="w-full max-w-md">
                                                                                                 <label className="block text-sm font-semibold text-gray-800 mb-1">
                                                                                                       Phone Number
                                                                                                 </label>
@@ -367,7 +367,7 @@ const ViewDetails = () => {
                                                                                                             placeholder="Enter phone number"
                                                                                                       />
                                                                                                 </div>
-                                                                                          </div>
+                                                                                          </div> */}
                                                                                           <div class="sm:col-span-2">
                                                                                                 <label for=""> Email address </label>
                                                                                                 <div class="block mt-2 w-full p-0.5  text-sm font-normal text-gray-900 placeholder-gray-500 bg-white border  rounded-md caret-gray-900 focus:ring-gray-900 border-gray-500 ">
