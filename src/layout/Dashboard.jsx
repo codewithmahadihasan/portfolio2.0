@@ -188,6 +188,10 @@ const Dashboard = () => {
 
       const isAdmin = user?.designation === "Chief Executive Officer" || user?.designation === "manager"
 
+      if (!user) {
+            navigate("/sign_in")
+      }
+
       // Navigation Item Component
       const NavigationItem = ({ item, onClick }) => (
             <NavLink
