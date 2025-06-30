@@ -139,8 +139,8 @@ const JobManagement = () => {
 
 
                                           <div className="flow-root mt-8">
-                                                <div className="-my-5 divide-y divide-gray-200">
-                                                      <table className="min-w-full divide-y divide-gray-700">
+                                                <div className="-my-5 divide-y divide-gray-200 overflow-x-auto">
+                                                      <table className="min-w-full divide-y divide-gray-700 overflow-x-auto">
                                                             <thead className="bg-gray-800">
                                                                   <tr>
                                                                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Job Position</th>

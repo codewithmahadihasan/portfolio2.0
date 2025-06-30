@@ -320,19 +320,19 @@ const LoadingSkeleton = () => {
             <div className="min-h-screen bg-[#111827] py-8 px-4 sm:py-12 sm:px-6 lg:px-8">
                   <div className="max-w-7xl">
                         <div className="text-start mb-12 lg:mb-16 space-y-4">
-                              <div className="h-16 sm:h-24 lg:h-32 w-3/4 bg-gray-700/30 rounded-lg animate-pulse"></div>
-                              <div className="h-12 sm:h-16 lg:h-20 w-1/2 bg-gray-700/30 rounded-lg animate-pulse"></div>
-                              <div className="h-6 sm:h-8 w-1/3 bg-gray-700/30 rounded-lg animate-pulse"></div>
+                              <div className="h-16 sm:h-24 lg:h-32 w-3/4 bg-gray-700/30 rounded-lg"></div>
+                              <div className="h-12 sm:h-16 lg:h-20 w-1/2 bg-gray-700/30 rounded-lg"></div>
+                              <div className="h-6 sm:h-8 w-1/3 bg-gray-700/30 rounded-lg"></div>
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                               {Array.from({ length: 9 }).map((_, i) => (
                                     <div key={i} className="bg-gray-800/50 border border-gray-700/50 rounded-xl">
                                           <div className="p-6">
                                                 <div className="flex items-center space-x-4">
-                                                      <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-gray-700/30 animate-pulse"></div>
+                                                      <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-gray-700/30"></div>
                                                       <div className="flex-1 space-y-2">
-                                                            <div className="h-8 sm:h-10 w-16 bg-gray-700/30 rounded animate-pulse"></div>
-                                                            <div className="h-4 sm:h-5 w-24 bg-gray-700/30 rounded animate-pulse"></div>
+                                                            <div className="h-8 sm:h-10 w-16 bg-gray-700/30 rounded"></div>
+                                                            <div className="h-4 sm:h-5 w-24 bg-gray-700/30 rounded"></div>
                                                       </div>
                                                 </div>
                                           </div>

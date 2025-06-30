@@ -216,77 +216,79 @@ const Dashboard = () => {
                         </Link>
                   </div>
 
-                  {/* Navigation */}
-                  <nav className="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+                  <div className="overflow-y-auto">
+                        <nav className="flex-1 px-4 py-6 space-y-2 ">
 
 
-                        {/* need a search option for navigationItems */}
+                              {/* need a search option for navigationItems */}
 
-                        <div className="flex items-center justify-between mb-4">
-                              <input
-                                    onChange={(e) => {
-                                          setSearchValue(e.target.value);
-                                    }}
-                                    value={searchValue}
-                                    placeholder="Search navigation..."
-                                    className="w-full px-4 py-2 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
-                              />
-                        </div>
-
-                        <div className="space-y-1">
-                              {navigationItems.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((item) => (
-                                    <NavigationItem key={item.path} item={item} onClick={onItemClick} />
-                              ))}
-                        </div>
-
-
-                        {isAdmin && (
-                              <>
-                                    <div className="pt-6">
-                                          <div className="px-4 pb-2">
-                                                <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Management</h3>
-                                          </div>
-                                          <div className="space-y-1">
-                                                {adminNavigationItems.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((item) => (
-                                                      <NavigationItem key={item.path} item={item} onClick={onItemClick} />
-                                                ))}
-                                          </div>
-                                    </div>
-                              </>
-                        )}
-
-
-                        <div className="pt-6">
-                              <div className="px-4 pb-2">
-                                    <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">General</h3>
+                              <div className="flex items-center justify-between mb-4">
+                                    <input
+                                          onChange={(e) => {
+                                                setSearchValue(e.target.value);
+                                          }}
+                                          value={searchValue}
+                                          placeholder="Search navigation..."
+                                          className="w-full px-4 py-2 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                                    />
                               </div>
+
                               <div className="space-y-1">
-                                    {commonNavigationItems.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((item) => (
+                                    {navigationItems.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((item) => (
                                           <NavigationItem key={item.path} item={item} onClick={onItemClick} />
                                     ))}
                               </div>
-                        </div>
 
 
-                        <div className="pt-6">
-                              <button
-                                    onClick={() => {
-                                          handleLogout()
-                                          onItemClick?.()
-                                    }}
-                                    className="flex items-center gap-3 px-4 py-3 w-full rounded-lg text-sm font-medium text-gray-300 hover:bg-red-600 hover:text-white transition-all duration-200"
-                              >
-                                    <svg className="h-5 w-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                          <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                                          />
-                                    </svg>
-                                    <span>Log out</span>
-                              </button>
-                        </div>
-                  </nav>
+                              {isAdmin && (
+                                    <>
+                                          <div className="pt-6">
+                                                <div className="px-4 pb-2">
+                                                      <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Management</h3>
+                                                </div>
+                                                <div className="space-y-1">
+                                                      {adminNavigationItems.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((item) => (
+                                                            <NavigationItem key={item.path} item={item} onClick={onItemClick} />
+                                                      ))}
+                                                </div>
+                                          </div>
+                                    </>
+                              )}
+
+
+                              <div className="pt-6">
+                                    <div className="px-4 pb-2">
+                                          <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">General</h3>
+                                    </div>
+                                    <div className="space-y-1">
+                                          {commonNavigationItems.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((item) => (
+                                                <NavigationItem key={item.path} item={item} onClick={onItemClick} />
+                                          ))}
+                                    </div>
+                              </div>
+
+
+                              <div className="pt-6">
+                                    <button
+                                          onClick={() => {
+                                                handleLogout()
+                                                onItemClick?.()
+                                          }}
+                                          className="flex items-center gap-3 px-4 py-3 w-full rounded-lg text-sm font-medium text-gray-300 hover:bg-red-600 hover:text-white transition-all duration-200"
+                                    >
+                                          <svg className="h-5 w-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                                <path
+                                                      strokeLinecap="round"
+                                                      strokeLinejoin="round"
+                                                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                                                />
+                                          </svg>
+                                          <span>Log out</span>
+                                    </button>
+                              </div>
+                        </nav>
+                  </div>
+
 
 
                   {user && (
