@@ -1,5 +1,3 @@
-"use client"
-
 import { useContext, useEffect, useRef, useState } from "react"
 import { useQuery } from "@tanstack/react-query"
 import { useSprings, animated } from "@react-spring/web"
@@ -9,18 +7,13 @@ import { base_url } from "../../../layout/Title"
 import { FaBlog } from "react-icons/fa"
 import { Link } from "react-router-dom"
 
-
 export default function TaskReport() {
       const { user } = useContext(AuthContext)
-
-
-
       const [greeting, setGreeting] = useState("")
 
       useEffect(() => {
             const hour = new Date().getHours();
             let greet = "Hello";
-
             if (hour >= 0 && hour < 5) {
                   greet = "Good Midnight";
             } else if (hour >= 5 && hour < 7) {
@@ -38,7 +31,6 @@ export default function TaskReport() {
             } else if (hour >= 21 && hour <= 23) {
                   greet = "Good Night";
             }
-
             setGreeting(greet);
       }, []);
 
@@ -62,7 +54,7 @@ export default function TaskReport() {
       })
 
       const { data: meting_data = [], refetch: refetchMeting, isLoading: isLoadingMeting } = useQuery({
-            queryKey: ['meting_data', user?.email], // Add email to the queryKey for proper caching
+            queryKey: ['meting_data', user?.email],
             queryFn: async () => {
                   const res = await fetch(
                         `${base_url}/meeting/get-meetings?email=${user?.email}`,
@@ -77,7 +69,7 @@ export default function TaskReport() {
                   const data = await res.json();
                   return data.data;
             },
-            enabled: !!user?.email, // Ensures it's not null/undefined/empty string
+            enabled: !!user?.email,
       });
 
       const {
@@ -96,7 +88,6 @@ export default function TaskReport() {
                               },
                               method: 'GET',
                         }
-
                   );
                   const data = await res.json();
                   return data.data;
@@ -119,7 +110,6 @@ export default function TaskReport() {
                               },
                               method: 'GET',
                         }
-
                   );
                   const data = await res.json();
                   return data.data;
@@ -180,10 +170,8 @@ export default function TaskReport() {
             },
       });
 
-
       const CALENDLY_TOKEN = "Bearer eyJraWQiOiIxY2UxZTEzNjE3ZGNmNzY2YjNjZWJjY2Y4ZGM1YmFmYThhNjVlNjg0MDIzZjdjMzJiZTgzNDliMjM4MDEzNWI0IiwidHlwIjoiUEFUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL2F1dGguY2FsZW5kbHkuY29tIiwiaWF0IjoxNzUxMDIzMDQ4LCJqdGkiOiI3OWMzZDE3NS1hYjJkLTRiOTMtOWUwMS1lM2E5MGE2ZTQ0YmYiLCJ1c2VyX3V1aWQiOiJiMTgxNmZlZi1kYWEyLTRhMWItYmM1NS03MjM0OGRjODA2ZWEifQ.fqFBxpZJcdkp7d4yHaB8_54B5_zpFGSKcKGXQlExAE4psCUv-amJMaIMddsLaQdvkMlra0OtKh6pLajwbKpdXQ";
 
-      // Helper: format date as YYYY-MM-DD
       const getDateString = (date) => date.toISOString().split("T")[0];
 
       function useCalendlyUser() {
@@ -219,19 +207,14 @@ export default function TaskReport() {
             });
       }
 
-
       const { data: userUri } = useCalendlyUser();
       const { data: meetings } = useCalendlyMeetings(userUri);
 
-      // today's date string
       const todayString = getDateString(new Date());
-
-      // filter meetings created today
       const todaysMeetings = meetings?.filter(
             (meeting) => getDateString(new Date(meeting.created_at)) === todayString
       );
       const todaysMeetingCount = todaysMeetings?.length || 0;
-
 
       const now = new Date();
 
@@ -394,7 +377,7 @@ const SplitText = ({
       useEffect(() => {
             if (!ref.current) return
 
-            const observer = new IntersectionObserver(
+            const observer = new window.IntersectionObserver(
                   ([entry]) => {
                         if (entry.isIntersecting) {
                               setInView(true)
