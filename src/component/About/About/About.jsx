@@ -138,6 +138,7 @@ const About = () => {
                   "gender": "female"
             },
 
+
             {
                   "id": 8,
                   "img": sarwar,
@@ -146,6 +147,15 @@ const About = () => {
                   "post": "Software Engineer",
                   "linkedIn": "https://www.linkedin.com/in/sarwar-asik/",
                   "gender": "male"
+            },
+            {
+                  "id": 9,
+                  "img": nahid,
+                  "name": "Nahid Ferdous",
+                  "email": "nahid@brightfuturesoft.com",
+                  "post": "Software Developer",
+                  "linkedIn": "https://www.linkedin.com/in/nahid-ferdaos/",
+                  "gender": "female"
             },
             {
                   "id": 9,

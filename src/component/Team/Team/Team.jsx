@@ -137,7 +137,7 @@ const Team = () => {
                   "img": nahid,
                   "name": "Nahid Ferdous",
                   "email": "nahid@brightfuturesoft.com",
-                  "post": "Lead and Sales Executive",
+                  "post": "Software Developer",
                   "linkedIn": "https://www.linkedin.com/in/nahid-ferdaos/",
                   "gender": "female"
             }, {
