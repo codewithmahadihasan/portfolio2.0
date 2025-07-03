@@ -219,21 +219,21 @@ export default function TaskReport() {
       const now = new Date();
 
       const reactApplicationCount = job_data
-            .filter(job =>
+            ?.filter(job =>
                   new Date(job.dateline) > now
             )
-            .reduce((sum, job) => sum + (job.application_count || 0), 0);
+            ?.reduce((sum, job) => sum + (job.application_count || 0), 0);
 
       const statsData = [
             { icon: CheckCircle, label: "New Tasks", value: "0", color: "text-emerald-400", bgColor: "bg-emerald-500/20", href: "/dashboard/your-task" },
-            { icon: Calendar, label: "New Meetings", value: meting_data.filter(meting => meting.status !== "end").length, color: "text-blue-400", bgColor: "bg-blue-500/20", href: "/dashboard/meeting_management" },
-            { icon: Bell, label: "Notices", value: notice_data.length, color: "text-amber-400", bgColor: "bg-amber-500/20", href: "/dashboard/notice" },
-            { icon: Bug, label: "Employee Issues", value: issue_data.length, color: "text-red-400", bgColor: "bg-red-500/20", href: "/dashboard/issue-submit" },
+            { icon: Calendar, label: "New Meetings", value: meting_data?.filter(meting => meting.status !== "end").length, color: "text-blue-400", bgColor: "bg-blue-500/20", href: "/dashboard/meeting_management" },
+            { icon: Bell, label: "Notices", value: notice_data?.length, color: "text-amber-400", bgColor: "bg-amber-500/20", href: "/dashboard/notice" },
+            { icon: Bug, label: "Employee Issues", value: issue_data?.length, color: "text-red-400", bgColor: "bg-red-500/20", href: "/dashboard/issue-submit" },
             { icon: AlertTriangle, label: "New Client Meeting", value: todaysMeetingCount, color: "text-orange-400", bgColor: "bg-orange-500/20", href: "/dashboard/client_meetings" },
             { icon: FileText, label: "Applications", value: reactApplicationCount, color: "text-purple-400", bgColor: "bg-purple-500/20", href: "/dashboard/job-management" },
-            { icon: MessageSquare, label: "Contact Requests", value: contacts.filter(contact => contact.status !== "contacted").length, color: "text-cyan-400", bgColor: "bg-cyan-500/20", href: "/dashboard/contact-management" },
-            { icon: FolderOpen, label: "Projects", value: project_data.length, color: "text-indigo-400", bgColor: "bg-indigo-500/20", href: "/dashboard/project-management" },
-            { icon: FaBlog, label: "Blogs", value: blog_data.length, color: "text-indigo-400", bgColor: "bg-indigo-500/20", href: "/dashboard/blog-management" },
+            { icon: MessageSquare, label: "Contact Requests", value: contacts?.filter(contact => contact.status !== "contacted").length, color: "text-cyan-400", bgColor: "bg-cyan-500/20", href: "/dashboard/contact-management" },
+            { icon: FolderOpen, label: "Projects", value: project_data?.length, color: "text-indigo-400", bgColor: "bg-indigo-500/20", href: "/dashboard/project-management" },
+            { icon: FaBlog, label: "Blogs", value: blog_data?.length, color: "text-indigo-400", bgColor: "bg-indigo-500/20", href: "/dashboard/blog-management" },
       ]
 
       if (isLoadingContact || isLoadingMeting || isLoadingNotice || isLoadingIssue || isLoadingProject) {

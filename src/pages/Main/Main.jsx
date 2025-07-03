@@ -154,7 +154,7 @@ const Main = () => {
                   <div className="">
                         <Header />
                   </div>
-                  <div className=""><Outlet /></div>
+                  <div className="pt-6"><Outlet /></div>
                   <Footer />
                   <CopyrightBar />
             </div>

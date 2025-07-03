@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 // Utility: Responsive class helper
 const responsive = {
@@ -19,10 +20,10 @@ function SkeletonMeetingCard() {
             <div className={responsive.card + " "}>
                   <div className="p-4 sm:p-6">
                         <div className="flex flex-col gap-4">
-                              <div className="h-6 bg-gray-300 rounded w-2/3 mb-2"></div>
-                              <div className="h-4 bg-gray-300 rounded w-1/3 mb-2"></div>
-                              <div className="h-3 bg-gray-200 rounded w-1/2 mb-2"></div>
-                              <div className="h-8 bg-gray-200 rounded w-full mb-2"></div>
+                              <div className="h-6 bg-gray-500 rounded w-2/3 mb-2"></div>
+                              <div className="h-4 bg-gray-500 rounded w-1/3 mb-2"></div>
+                              <div className="h-3 bg-gray-500 rounded w-1/2 mb-2"></div>
+                              <div className="h-8 bg-gray-500 rounded w-full mb-2"></div>
                         </div>
                   </div>
             </div>
@@ -356,9 +357,9 @@ export default function Client_Meeting() {
                                           </svg>
                                     </div>
                               </div>
-                              <div className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-2 sm:px-4 py-1 sm:py-2 rounded-xl text-xs sm:text-sm font-medium">
-                                    Displaying {filteredMeetings.length} of {meetings.length} Events
-                              </div>
+                              <Link to='/dashboard/client-meeting/details' className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-2 sm:px-4 py-1 sm:py-2 rounded-xl text-xs sm:text-sm font-medium">
+                                    Meeting Details
+                              </Link>
                         </div>
 
                         {/* Tabs and Actions */}
@@ -435,7 +436,9 @@ export default function Client_Meeting() {
                         {/* Loader skeleton */}
                         {loading
                               ? (
-                                    Array.from({ length: 3 }).map((_, i) => <SkeletonMeetingCard key={i} />)
+                                    <div className="mt-6 space-y-4">
+                                          {Array.from({ length: 3 }).map((_, i) => <SkeletonMeetingCard key={i} />)}
+                                    </div>
                               )
                               : Object.entries(groupedMeetings).map(([dateKey, dateMeetings]) => {
                                     const { dateHeader, isToday } = formatDate(dateMeetings[0].start_time);

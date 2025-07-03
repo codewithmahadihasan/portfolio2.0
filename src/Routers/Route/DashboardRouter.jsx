@@ -5,6 +5,7 @@ import TaskReport from "../../pages/Dashboard/Dashboard/Chart";
 import Account_management from "../../pages/Eployee/Accounts/Account_management";
 import BlogManagement from "../../pages/Eployee/Blog_Management/BlogManagement";
 import Client_Meeting from "../../pages/Eployee/Client_meeting/Client_Meeting";
+import Meeting_details from "../../pages/Eployee/Client_meeting/Meeting_details";
 import Contact_management from "../../pages/Eployee/Contact/Contact_management";
 import SubscribersTable from "../../pages/Eployee/Contact/Subcriber_management";
 import EmployeeManagement from "../../pages/Eployee/EmployeeManagement/EmployeeManagement";
@@ -118,6 +119,10 @@ export const dashboardRouter = [
             path: "employee-management",
             element: <EmployeeManagement />
 
+      },
+      {
+            path: "client-meeting/details",
+            element: <Meeting_details />
       }
 
 ]
