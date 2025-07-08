@@ -22,6 +22,7 @@ import jabbar from '../../../Assctes/teamMember/jabbar.jpeg'
 import summon from '../../../Assctes/teamMember/summon.jpeg'
 import aysha from '../../../Assctes/teamMember/aysha.jpg'
 import nowshin from '../../../Assctes/teamMember/nowshin.jpeg'
+import abir from '../../../Assctes/teamMember/abir.jpeg'
 // import sumon from '../../../Assctes/teamMember/sumon.jpg'
 
 import un from '../../../Assctes/teamMember/unknown.svg'
@@ -93,12 +94,31 @@ const About = () => {
                   "gender": "female"
             },
             {
-                  "id": 8,
+                  "id": 4,
                   "img": summon,
                   "name": "Md Sumon Shorker",
                   "email": "sumon@brightfuturesoft.com",
                   "post": "Lead and Sales Executive",
                   "linkedIn": "https://www.linkedin.com/in/md-sumon-shorkar/",
+                  "gender": "male"
+            },
+            {
+                  "id": 4,
+                  "img": nowshin,
+                  "name": "Nowshin Jahan",
+                  "email": "nowshin@brightfuturesoft.com",
+                  "post": "Lead and Sales Executive",
+                  "linkedIn": "https://www.linkedin.com/in/nowshinjahan/",
+                  "gender": "female"
+            },
+
+            {
+                  "id": 4,
+                  "img": abir,
+                  "name": "Abir Hassan Tonmoy",
+                  "email": "nowshin@brightfuturesoft.com",
+                  "post": "Lead and Sales Executive",
+                  "linkedIn": "https://www.linkedin.com/in/abir-hassan-tonmoy-1724b5232/",
                   "gender": "male"
             },
             {
@@ -128,16 +148,6 @@ const About = () => {
                   "linkedIn": "https://www.linkedin.com/in/ayesha-rahman-a78b631b2/",
                   "gender": "female"
             },
-            {
-                  "id": 7,
-                  "img": nowshin,
-                  "name": "Nowshin Jahan",
-                  "email": "nowshin@brightfuturesoft.com",
-                  "post": "Lead and Sales Executive",
-                  "linkedIn": "https://www.linkedin.com/in/nowshinjahan/",
-                  "gender": "female"
-            },
-
 
             {
                   "id": 8,

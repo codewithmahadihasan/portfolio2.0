@@ -17,6 +17,7 @@ import summon from '../../../Assctes/teamMember/summon.jpeg'
 import aysha from '../../../Assctes/teamMember/aysha.jpg'
 import nowshin from '../../../Assctes/teamMember/nowshin.jpeg'
 import nahid from '../../../Assctes/teamMember/nahid.jpeg'
+import abir from '../../../Assctes/teamMember/abir.jpeg';
 
 
 
@@ -78,12 +79,30 @@ const Team = () => {
                   "gender": "female"
             },
             {
-                  "id": 8,
+                  "id": 4,
                   "img": summon,
                   "name": "Md Sumon Shorker",
                   "email": "sumon@brightfuturesoft.com",
                   "post": "Lead and Sales Executive",
                   "linkedIn": "https://www.linkedin.com/in/md-sumon-shorkar/",
+                  "gender": "male"
+            },
+            {
+                  "id": 4,
+                  "img": nowshin,
+                  "name": "Nowshin Jahan",
+                  "email": "nowshin@brightfuturesoft.com",
+                  "post": "Lead and Sales Executive",
+                  "linkedIn": "https://www.linkedin.com/in/nowshinjahan/",
+                  "gender": "female"
+            },
+            {
+                  "id": 4,
+                  "img": abir,
+                  "name": "Abir Hassan Tonmoy",
+                  "email": "abir@brightfuturesoft.com",
+                  "post": "Lead and Sales Executive",
+                  "linkedIn": "https://www.linkedin.com/in/abir-hassan-tonmoy-1724b5232/",
                   "gender": "male"
             },
             {
@@ -113,15 +132,7 @@ const Team = () => {
                   "linkedIn": "https://www.linkedin.com/in/ayesha-rahman-a78b631b2/",
                   "gender": "female"
             },
-            {
-                  "id": 7,
-                  "img": nowshin,
-                  "name": "Nowshin Jahan",
-                  "email": "nowshin@brightfuturesoft.com",
-                  "post": "Lead and Sales Executive",
-                  "linkedIn": "https://www.linkedin.com/in/nowshinjahan/",
-                  "gender": "female"
-            },
+
 
             {
                   "id": 8,

@@ -225,7 +225,7 @@ const Apply_List = () => {
                                                             </td>
                                                             <td className="px-6 py-4 whitespace-nowrap">
                                                                   <div class="flex-1 min-w-0 ml-4 ">
-                                                                        <p class="text-sm font-bold text-gray-100 truncate ">{job?.salary_expectation} BDT</p>
+                                                                        <p class="text-sm font-bold text-gray-100 truncate ">{job?.salary_expectation.split(" ")[0]} BDT</p>
                                                                         <p className="mt-1 text-sm font-medium text-gray-500 truncate">Experience: {job.experience_in_years.slice(0, 3)} Years</p>
                                                                   </div>
                                                             </td>

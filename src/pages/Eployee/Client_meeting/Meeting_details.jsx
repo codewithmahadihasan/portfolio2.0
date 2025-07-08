@@ -158,6 +158,15 @@ export default function MeetingDetails() {
             }
       };
 
+      function formatTimeTo12Hour(time24) {
+            const [hourStr, minuteStr] = time24.split(':');
+            let hour = parseInt(hourStr, 10);
+            const minute = minuteStr;
+            const ampm = hour >= 12 ? 'PM' : 'AM';
+            hour = hour % 12 || 12; // Convert to 12-hour format
+            return `${hour}:${minute} ${ampm}`;
+      }
+
       return (
             <div className="min-h-screen bg-gray-900 p-4 lg:p-8">
                   <div>
@@ -399,7 +408,12 @@ export default function MeetingDetails() {
                                                             <td className="px-6 py-4">
                                                                   <div>
                                                                         <div className="text-white font-medium">{row.meetingDate}</div>
-                                                                        {row.time && <div className="text-gray-400 text-sm">{row.time}</div>}
+
+                                                                        {row.time && (
+                                                                              <div className="text-gray-400 text-sm">
+                                                                                    {formatTimeTo12Hour(row.time)}
+                                                                              </div>
+                                                                        )}
                                                                   </div>
                                                             </td>
                                                             <td className="px-6 py-4">
