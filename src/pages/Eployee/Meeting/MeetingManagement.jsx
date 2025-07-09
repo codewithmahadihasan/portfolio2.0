@@ -12,7 +12,7 @@ const MeetingManagement = () => {
       const { user } = useContext(AuthContext);
       console.log(user);
 
-      // console.log(`${base_url}/meeting/get-meetings?email=${user.email}`,);
+      // console.log(`${base_url}/meeting/get-meetings?email=${user?.email}`,);
 
       const { data: meting_data = [], refetch, isLoading } = useQuery({
             queryKey: ['meting_data', user?.email], // Add email to the queryKey for proper caching
@@ -183,7 +183,7 @@ const MeetingManagement = () => {
                                                                                           <div className="flex items-start justify-between mb-4">
                                                                                                 <div className="flex-1">
                                                                                                       <h3 className="text-lg font-semibold  mb-1">{meeting?.title}</h3>
-                                                                                                      <p className="text-sm text-gray-300 mb-3">{meeting?.agenda}</p>
+                                                                                                      <p className="text-sm text-gray-300 mb-3" dangerouslySetInnerHTML={{ __html: meeting?.agenda }}></p>
 
                                                                                                       {/* Status Badge */}
                                                                                                       <div className="inline-flex items-center">

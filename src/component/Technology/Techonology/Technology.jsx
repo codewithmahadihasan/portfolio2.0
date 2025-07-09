@@ -114,10 +114,7 @@ const Technology = () => {
                               id: 8,
                               name: "Astro", img: ashtro
                         },
-                        {
-                              id: 9,
-                              name: "Nest.js", img: nest
-                        },
+
                         {
                               id: 10,
                               name: "Angular", img: angular
@@ -164,6 +161,10 @@ const Technology = () => {
                         {
                               id: 7,
                               name: "Fastify", img: Fastify
+                        },
+                        {
+                              id: 9,
+                              name: "Nest.js", img: nest
                         },
                   ]
             },

@@ -26,7 +26,7 @@ const EmployeeManagement = () => {
       } = useQuery({
             queryKey: ["all_users"],
             queryFn: async () => {
-                  const res = await fetch(`${base_url}/auth/all?email=${user.email}`, {
+                  const res = await fetch(`${base_url}/auth/all?email=${user?.email}`, {
                         headers: {
                               "content-type": "application/json",
                               author: "bright_future_soft",
@@ -41,10 +41,10 @@ const EmployeeManagement = () => {
       const handleEdit = (user) => {
             setEditingUser(user)
             setFormData({
-                  name: user.name,
-                  email: user.email,
+                  name: user?.name,
+                  email: user?.email,
                   role: user.role,
-                  image: user.image,
+                  image: user?.image,
             })
       }
 
@@ -130,20 +130,20 @@ const EmployeeManagement = () => {
                                           <div className="p-6">
                                                 <div className="flex items-center justify-between mb-4">
                                                       <div className="flex items-center">
-                                                            {user.image ? (
+                                                            {user?.image ? (
                                                                   <img
-                                                                        src={user.image || "/placeholder.svg"}
-                                                                        alt={user.name}
+                                                                        src={user?.image || "/placeholder.svg"}
+                                                                        alt={user?.name}
                                                                         className="w-12 h-12 rounded object-cover mr-4"
                                                                   />
                                                             ) : (
                                                                   <div className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center mr-4">
-                                                                        <span className="text-xl font-bold text-gray-500">{user.name.charAt(0).toUpperCase()}</span>
+                                                                        <span className="text-xl font-bold text-gray-500">{user?.name.charAt(0).toUpperCase()}</span>
                                                                   </div>
                                                             )}
                                                             <div>
-                                                                  <h3 className="font-semibold text-lg text-gray-100">{user.name}</h3>
-                                                                  <p className="text-sm text-gray-600">{user.email}</p>
+                                                                  <h3 className="font-semibold text-lg text-gray-100">{user?.name}</h3>
+                                                                  <p className="text-sm text-gray-600">{user?.email}</p>
                                                             </div>
                                                       </div>
                                                 </div>

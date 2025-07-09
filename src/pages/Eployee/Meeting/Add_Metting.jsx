@@ -5,14 +5,15 @@ import { base_url } from '../../../layout/Title';
 import { AuthContext } from '../../../context/UseContext/UseContext';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
+import JoditEditor from 'jodit-react';
 
 
 const Add_Meting = () => {
       const { user } = useContext(AuthContext);
       const [selectedUsers, setSelectedUsers] = useState([{
-            name: user.name,
-            email: user.email,
-            image: user.image
+            name: user?.name,
+            email: user?.email,
+            image: user?.image
       }]);
       const [duration, setDuration] = useState(60); //
       const [upload, setUpload] = useState(false)
@@ -22,7 +23,7 @@ const Add_Meting = () => {
             queryKey: ["all_users"],
             queryFn: async () => {
                   const res = await fetch(
-                        `${base_url}/auth/all?email=${user.email}`,
+                        `${base_url}/auth/all?email=${user?.email}`,
                         {
                               headers: {
                                     'content-type': 'application/json',
@@ -87,9 +88,9 @@ const Add_Meting = () => {
 
 
       const options = all_users.map(user => ({
-            value: user.email,
-            image: user.image,
-            label: user.name
+            value: user?.email,
+            image: user?.image,
+            label: user?.name
       }));
 
       const handleChange = selectedOptions => {
@@ -160,12 +161,48 @@ const Add_Meting = () => {
 
       return (
             <div>
-                  <div className='py-20 flex justify-center px-1 text-black  mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 md:w-[80%] w-[95%] mt-5'>
+                  <div className='py-20 flex justify-center px-1  sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 md:w-[80%] w-[95%] mt-5'>
                         <form onSubmit={meeting} className='w-10/12'>
                               <h1 className='text-2xl font-bold text-center text-white py-8'>Upload New Meeting Schedule</h1>
 
-                              <input className='w-full my-2 rounded bg-gray-900  text-white' name='title' placeholder='Input meeting title' type="text" />
-                              <textarea name="agenda" className='w-full my-2 rounded bg-gray-900  text-white' id="" placeholder='Describe here meeting agenda'></textarea>
+                              <input className='w-full my-2 rounded border border-gray-100 focus:border-gray-100 focus:outline-none  bg-gray-900  text-white' name='title' placeholder='Input meeting title' type="text" />
+                              <JoditEditor
+                                    config={{
+                                          readonly: false,
+                                          theme: "dark",
+                                          height: 200,
+                                          style: {
+                                                backgroundColor: "#1f2937",
+                                                color: "#ffffff",
+                                          },
+                                          toolbarSticky: false,
+                                          toolbarAdaptive: false,
+                                          toolbarButtonSize: "small",
+                                          buttons: [
+                                                "bold",
+                                                "italic",
+                                                "underline",
+                                                "|",
+                                                "ul",
+                                                "ol",
+                                                "|",
+                                                "link",
+                                                "|",
+                                                "undo",
+                                                "redo",
+                                                "brush",
+                                                "paragraph",
+                                          ],
+                                          uploader: {
+                                                insertImageAsBase64URI: true,
+                                          },
+                                          removeButtons: ["source", "video", "fullsize", "about"],
+                                    }}
+                                    name="agenda"
+                                    className="jodit-editor"
+                              />
+
+                              {/* <textarea name="agenda" className='w-full my-2 rounded bg-gray-900  text-white' id="" placeholder='Describe here meeting agenda'></textarea> */}
                               <input className='w-full my-2 rounded bg-gray-900  text-white' name='date' placeholder='Select date and time' type="datetime-local" />
                               <input
                                     className="w-full my-2 rounded bg-gray-900  text-white"
@@ -184,9 +221,9 @@ const Add_Meting = () => {
                                     isMulti
                                     options={options}
                                     value={selectedUsers.map(user => ({
-                                          value: user.email,
-                                          label: user.name,
-                                          image: user.image
+                                          value: user?.email,
+                                          label: user?.name,
+                                          image: user?.image
                                     }))}
                                     styles={customStyles}
                                     onChange={handleChange}

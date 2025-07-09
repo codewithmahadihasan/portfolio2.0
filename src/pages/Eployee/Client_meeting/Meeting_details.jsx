@@ -23,7 +23,7 @@ export default function MeetingDetails() {
             queryKey: ["client_meetings_data", user?.email],
             queryFn: async () => {
                   const res = await fetch(
-                        `${base_url}/meeting/get-client-meeting?email=${user.email}`,
+                        `${base_url}/meeting/get-client-meeting?email=${user?.email}`,
                         {
                               headers: {
                                     "content-type": "application/json",

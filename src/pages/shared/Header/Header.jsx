@@ -119,7 +119,7 @@ const Header = () => {
                                                             <div className="relative cursor-pointer">
                                                                   <img
                                                                         className="object-cover w-10 h-10 rounded-full"
-                                                                        src={user.image}
+                                                                        src={user?.image}
                                                                         alt=""
                                                                   />
                                                                   <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 absolute right-1 ring-1 ring-white bottom-0" />
@@ -176,7 +176,7 @@ const Header = () => {
                                                             <div className="relative">
                                                                   <img
                                                                         className="object-cover w-10 h-10 rounded-full"
-                                                                        src={user.image}
+                                                                        src={user?.image}
                                                                         alt=""
                                                                   />
                                                                   <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 absolute right-1 ring-1 ring-white bottom-0" />

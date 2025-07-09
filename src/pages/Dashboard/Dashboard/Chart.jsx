@@ -102,7 +102,7 @@ export default function TaskReport() {
             queryKey: ["issue_data"],
             queryFn: async () => {
                   const res = await fetch(
-                        `${base_url}/issue/get-issue?author_name=${user.name}`,
+                        `${base_url}/issue/get-issue?author_name=${user?.name}`,
                         {
                               headers: {
                                     'content-type': 'application/json',

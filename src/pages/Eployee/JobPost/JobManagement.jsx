@@ -275,11 +275,11 @@ const JobManagement = () => {
                                                                                     <div className="my-4">
                                                                                           <JoditEditor
                                                                                                 config={{
-                                                                                                      readonly: false,
                                                                                                       style: {
-                                                                                                            backgroundColor: '#111827',
-                                                                                                            color: '#fff',
+                                                                                                            backgroundColor: "#1f2937",
+                                                                                                            color: "#ffffff",
                                                                                                       },
+                                                                                                      readonly: false,
                                                                                                 }}
                                                                                                 value={edit_job?.description}
                                                                                                 name="description"

@@ -92,12 +92,12 @@ const AddNewIssue = () => {
                               <div className="relative bg-[#0b0a2238] text-black font-mono border border-[#1795F0] rounded-lg mt-8">
                                     {/* <textarea name="body" type="text" className="w-full h-[110px] rounded-lg outline-none border-none  " placeholder="Please describe your problem here" /> */}
                                     <JoditEditor config={{
+                                          style: {
+                                                backgroundColor: "#1f2937",
+                                                color: "#ffffff",
+                                          },
                                           readonly: false,
                                           theme: 'dark',
-                                          style: {
-                                                backgroundColor: '#000',
-                                                color: '#fff'
-                                          }
                                     }} name='body' className='rounded  h-[510px] t jodit-editor' />
                               </div>
 

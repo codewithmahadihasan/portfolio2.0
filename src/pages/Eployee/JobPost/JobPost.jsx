@@ -54,9 +54,9 @@ const JobPost = () => {
                               readonly: false,
                               theme: 'dark',
                               style: {
-                                    backgroundColor: '#000',
-                                    color: '#fff'
-                              }
+                                    backgroundColor: "#1f2937",
+                                    color: "#ffffff",
+                              },
                         }} name='description' className='rounded  jodit-editor' />
                         <br />
                         <br />

@@ -15,14 +15,14 @@ const ProfileSection = ({ user }) => {
                         <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-gray-100 shadow-md mb-4">
                               {user?.image && imageLoaded ? (
                                     <img
-                                          src={user.image || "/placeholder.svg"}
-                                          alt={user.name}
+                                          src={user?.image || "/placeholder.svg"}
+                                          alt={user?.name}
                                           className="w-full h-full object-cover"
                                           onError={handleImageError}
                                     />
                               ) : (
                                     <div className="w-full h-full bg-blue-100 flex items-center justify-center text-blue-500 text-2xl font-bold">
-                                          {user?.name ? user.name.charAt(0).toUpperCase() : "U"}
+                                          {user?.name ? user?.name.charAt(0).toUpperCase() : "U"}
                                     </div>
                               )}
                         </div>

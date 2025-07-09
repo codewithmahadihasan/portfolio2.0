@@ -300,8 +300,9 @@ const Dashboard = () => {
                                           alt={user?.name || "User"}
                                     />
                                     <div className="flex-1 min-w-0">
-                                          <p className="text-white text-sm font-medium truncate">{user.name}</p>
-                                          <p className="text-xs text-gray-400 truncate">{user.designation}</p>
+                                          <p className="text-white text-sm font-medium truncate">{user?.name}</p>
+                                          <p className="text-xs text-gray-400 truncate">{user?.possition
+                                          }</p>
                                     </div>
                               </div>
                         </div>

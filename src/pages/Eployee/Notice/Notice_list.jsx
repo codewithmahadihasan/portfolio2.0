@@ -95,7 +95,7 @@ const Notice_list = () => {
 
                                           <div class="flow-root max-w-md mx-auto mt-12 border-t border-gray-200 sm:mt-16 lg:max-w-none">
                                                 <div class="-mb-10 divide-y divide-gray-200">
-                                                      {notice_data.map((notice) => (
+                                                      {Array.isArray(notice_data) ? notice_data.map((notice) => (
                                                             <div key={notice._id} class="grid grid-cols-1 py-10 gap-y-6 lg:grid-cols-8 lg:gap-x-32">
                                                                   <div class="lg:col-span-2">
                                                                         <p class="text-lg font-bold text-gray-100">{new Date(notice?.notice_date).toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' })}</p>
@@ -125,7 +125,8 @@ const Notice_list = () => {
                                                                               Delete Issue
                                                                         </button>}
                                                                   </div>
-                                                            </div>))}
+                                                            </div>)) : <h1>History Not Found</h1>
+                                                      }
 
 
                                                 </div>
