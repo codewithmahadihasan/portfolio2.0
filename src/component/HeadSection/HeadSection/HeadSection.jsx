@@ -16,20 +16,20 @@ const HeadSection = () => {
                               <div className="mb-16 lg:mb-0 lg:max-w-lg lg:pr-5">
                                     <div className="max-w-xl mb-6">
                                           <div>
-                                                <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider uppercase bg-teal-400 text-teal-900 rounded-full">
+                                                <p className="inline-block px-3 py-px mb-4 text-[10px] font-semibold tracking-wider uppercase bg-teal-400 text-teal-900 rounded-full">
                                                       <Typewriter
                                                             options={{
                                                                   strings: [
-                                                                        'Enterprise Web Design & Development',
-                                                                        'Custom Mobile App Development for Corporates',
-                                                                        'Expert Software Consulting for Large Businesses',
-                                                                        'Enterprise-grade Custom Software Solutions',
-                                                                        'Advanced Point of Sale (POS) Systems for Enterprises',
-                                                                        'Scalable E-commerce Platforms for Corporations',
-                                                                        'Robust ERP Systems for Enterprise Management',
-                                                                        'Comprehensive LMS Solutions for Organizations',
-                                                                        'Tailored Software Solutions for Big Businesses',
-                                                                        'Interactive E-learning Platforms for Enterprises'
+                                                                        "Enterprise Web Design & Development",
+                                                                        "Corporate Mobile App Development",
+                                                                        "Enterprise Software Consulting",
+                                                                        "Custom Enterprise Software",
+                                                                        "Enterprise POS Systems",
+                                                                        "Scalable Corporate E-commerce",
+                                                                        "Enterprise ERP Systems",
+                                                                        "Corporate LMS Solutions",
+                                                                        "Tailored Big Business Software",
+                                                                        "Enterprise E-learning Platforms"
                                                                   ],
                                                                   autoStart: true,
                                                                   loop: true,
@@ -50,12 +50,12 @@ const HeadSection = () => {
                                     </div>
                                     <div className="flex items-center space-x-3">
                                           <Link
-                                                className="group flex items-center justify-between gap-4  border border-indigo-600 bg-indigo-600 px-10 py-3 transition-colors hover:bg-transparent focus:outline-none focus:ring"
+                                                className="group flex items-center justify-between gap-4  border border-[#0A65B4] bg-[#0A65B4] px-8 py-3 transition-colors hover:bg-transparent focus:outline-none focus:ring"
                                                 target="_blank"
                                                 to="https://calendly.com/brightfuturesoft-bd/consultation"
                                           >
                                                 <span
-                                                      className="font-medium text-white transition-colors group-hover:text-indigo-600 group-active:text-indigo-500"
+                                                      className="font-medium text-[10px] md:text-xs lg:text-sm text-white transition-colors group-hover:text-[#0A65B4] group-active:text-[#0A65B4]"
                                                 >
                                                       Book an Appointment
                                                 </span>
@@ -66,10 +66,10 @@ const HeadSection = () => {
                                           {/* Border */}
 
                                           <Link
-                                                className="group flex items-center justify-between gap-4  border border-current px-10 py-3 text-indigo-600 transition-colors hover:bg-indigo-600 focus:outline-none focus:ring active:bg-indigo-500"
+                                                className="group flex items-center justify-between gap-4  border border-current px-8 py-3 text-[#0A65B4] transition-colors hover:bg-[#0A65B4] focus:outline-none focus:ring active:bg-[#0A65B4]"
                                                 to='/all_project'
                                           >
-                                                <span className="font-medium transition-colors group-hover:text-white">
+                                                <span className="font-medium text-[10px] md:text-xs lg:text-sm transition-colors group-hover:text-white">
                                                       Our  Portfolio
                                                 </span>
 

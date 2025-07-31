@@ -140,13 +140,13 @@ const Main = () => {
                   </div>
                   <button
                         onClick={toggleChat}
-                        className="bg-[#25D366] fixed bottom-3 z-50 right-4 w-14 h-14 rounded-full shadow-lg flex justify-center items-center hover:bg-[#128C7E] transition"
+                        className="bg-[#25D366] fixed bottom-3 z-50 right-4 lg:w-14 lg:h-14 w-12 h-12 rounded-full shadow-lg flex justify-center items-center hover:bg-[#128C7E] transition"
                         aria-label="WhatsApp Chat"
                   >
                         <img
                               src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/512px-WhatsApp.svg.png?20220228223904"
                               alt="WhatsApp"
-                              className="w-8 h-8"
+                              className="w-6 h-6 lg:w-8 lg:h-8"
                         />
                   </button>
 

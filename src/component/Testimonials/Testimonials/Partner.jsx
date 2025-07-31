@@ -15,17 +15,17 @@ const Partner = () => {
                                                       />
                                                 </a>
                                                 <img
-                                                      className="object-contain w-32 max-w-full sm:h-8 md:h-10 sm:w-44"
+                                                      className="object-contain w-32 max-w-full h-8 md:h-10 lg:h-12 sm:w-44"
                                                       src="https://img.icons8.com/?size=100&id=wU62u24brJ44&format=png&color=000000"
                                                       alt=""
                                                 />
                                                 <img
-                                                      className="object-contain w-32 max-w-full sm:h-8 md:h-10 sm:w-44"
+                                                      className="object-contain w-32 max-w-full h-8 md:h-10 lg:h-12 sm:w-44"
                                                       src="https://upload.wikimedia.org/wikipedia/commons/7/79/DigitalOcean_logo.png"
                                                       alt=""
                                                 />
                                                 <img
-                                                      className="object-contain w-32 max-w-full sm:h-8 md:h-10 sm:w-44"
+                                                      className="object-contain w-32 max-w-full h-8 md:h-10 lg:h-12 sm:w-44"
                                                       src="https://www.itfirms.co/wp-content/themes/lawyeria-lite/images/itfirms-footer.png"
                                                       alt=""
                                                 />

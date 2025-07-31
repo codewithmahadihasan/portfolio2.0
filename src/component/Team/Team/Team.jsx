@@ -18,6 +18,7 @@ import aysha from '../../../Assctes/teamMember/aysha.jpg'
 import nowshin from '../../../Assctes/teamMember/nowshin.jpeg'
 import nahid from '../../../Assctes/teamMember/nahid.jpeg'
 import abir from '../../../Assctes/teamMember/abir.jpeg';
+import lamim from '../../../Assctes/teamMember/pronoy.png'
 
 
 
@@ -42,16 +43,16 @@ const Team = () => {
             },
 
             {
-                  "id": 2,
+                  "id": 1,
                   "img": shishir,
                   "name": "Md Ibrahim Kholil",
                   "email": "manager@brightfuturesoft.com",
-                  "post": "Project Manager",
+                  "post": "Project Manager & HR Head",
                   "linkedIn": "https://www.linkedin.com/in/shishirkholil/",
                   "gender": "male"
             },
             {
-                  "id": 3,
+                  "id": 2,
                   "img": hadi,
                   "name": "Mohotasim Hadi",
                   "email": "advisor@brightfuturesoft.com",
@@ -68,9 +69,18 @@ const Team = () => {
                   "linkedIn": "https://www.linkedin.com/in/mhasan878/",
                   "gender": "male"
             },
+            {
+                  "id": 4,
+                  "img": lamim,
+                  "name": "Lamim Zakir Pronay",
+                  "email": "pm@brightfuturesoft.com",
+                  "post": "Product Manager",
+                  "linkedIn": "https://www.linkedin.com/in/lamim-zakir-pronay/",
+                  "gender": "male"
+            },
 
             {
-                  "id": 3,
+                  "id": 5,
                   "img": acccountManager,
                   "name": "Regita Redhe",
                   "email": "redhe@brightfuturesoft.com",
@@ -79,7 +89,7 @@ const Team = () => {
                   "gender": "female"
             },
             {
-                  "id": 4,
+                  "id": 6,
                   "img": summon,
                   "name": "Md Sumon Shorker",
                   "email": "sumon@brightfuturesoft.com",
@@ -88,7 +98,7 @@ const Team = () => {
                   "gender": "male"
             },
             {
-                  "id": 4,
+                  "id": 7,
                   "img": nowshin,
                   "name": "Nowshin Jahan",
                   "email": "nowshin@brightfuturesoft.com",
@@ -97,7 +107,7 @@ const Team = () => {
                   "gender": "female"
             },
             {
-                  "id": 4,
+                  "id": 8,
                   "img": abir,
                   "name": "Abir Hassan Tonmoy",
                   "email": "abir@brightfuturesoft.com",
@@ -106,7 +116,7 @@ const Team = () => {
                   "gender": "male"
             },
             {
-                  "id": 4,
+                  "id": 9,
                   "img": anik,
                   "name": "Md. Mahtab Uddin Anik",
                   "email": "anik@brightfuturesoft.com",
@@ -115,7 +125,7 @@ const Team = () => {
                   "gender": "male"
             },
             {
-                  "id": 5,
+                  "id": 10,
                   "img": jabbar,
                   "name": "Md Jabbar Hosen",
                   "email": "jabbar@brightfuturesoft.com",
@@ -124,7 +134,7 @@ const Team = () => {
                   "gender": "male"
             },
             {
-                  "id": 6,
+                  "id": 11,
                   "img": aysha,
                   "name": "Ayesha Rahman",
                   "email": "ayesha@brightfuturesoft.com",
@@ -135,7 +145,7 @@ const Team = () => {
 
 
             {
-                  "id": 8,
+                  "id": 12,
                   "img": sarwar,
                   "name": "Sarwar Hossain",
                   "email": "sarwar@brightfuturesoft.com",
@@ -144,7 +154,7 @@ const Team = () => {
                   "gender": "male"
             },
             {
-                  "id": 8,
+                  "id": 13,
                   "img": nahid,
                   "name": "Nahid Ferdous",
                   "email": "nahid@brightfuturesoft.com",
@@ -152,7 +162,7 @@ const Team = () => {
                   "linkedIn": "https://www.linkedin.com/in/nahid-ferdaos/",
                   "gender": "female"
             }, {
-                  "id": 9,
+                  "id": 14,
                   "img": mursed,
                   "name": "MH. Murshed",
                   "email": "mursed@brightfuturesoft.com",
@@ -161,7 +171,7 @@ const Team = () => {
                   "gender": "male"
             },
             {
-                  "id": 10,
+                  "id": 15,
                   "img": riky,
                   "name": "Uyemong Marma",
                   "email": "riky@brightfuturesoft.com",
@@ -224,7 +234,7 @@ const Team = () => {
                                                                   <h2 className="text-white font-semibold mt-2">{tData?.name}</h2>
                                                                   <p className="text-[14px] text-[#1becff]">{tData.post}</p>
                                                                   <small className="text-sm text-gray-400">{tData?.email}</small>
-                                                                  <Link to={tData.linkedIn}>
+                                                                  <Link to={tData.linkedIn} target="_blank">
                                                                         <AiFillLinkedin className="text-4xl mt-4 m-auto text-[#1e6dff]" />
                                                                   </Link>
                                                             </div>

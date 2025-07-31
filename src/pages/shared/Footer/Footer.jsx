@@ -10,9 +10,9 @@ const Footer = () => {
                               <div className="flex md:block flex-col items-center md:col-span-1 col-span-3">
                                     <img loading="lazy" src={logo} alt="" className="w-[120px] md:mx-0 mx-auto" />
                                     <p className="mt-4 ml-1 text-sm md:text-left text-center text-[gray]">
-                                          Envisioning the FUTURE,
+                                          Envisioning the <span className='text-red-500'>FUTURE</span>,
                                           <br />
-                                          Building the SOFTWARE.
+                                          Building the <span className='text-yellow-300'>SOFTWARE</span>.
                                     </p>
                                     <div className='flex md:flex-col md:items-start md:gap-1 items-center gap-2  mt-2  ml-1 text-sm md:text-left text-center text-blue-500'>
                                           <Link to={"/trams-and-conditions"}>Trams and condition</Link>

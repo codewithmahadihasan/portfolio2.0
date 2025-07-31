@@ -13,16 +13,40 @@ const Contact = () => {
       const [activeMdl, setActiveMdl] = useState(false);
       const [loading, setLoading] = useState(false);
 
+      const [value, setValue] = useState("");
+      const [error, setError] = useState("");
+
+      const validateEmailOrPhone = (input) => {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const phoneRegex = /^(\+?\d{1,3}[- ]?)?\d{10}$/; // supports international +880... or 01...
+
+            if (!input) return "This field is required.";
+            if (!emailRegex.test(input) && !phoneRegex.test(input)) {
+                  return "Enter a valid email or phone number.";
+            }
+            return "";
+      };
+
+      const handleChange = (e) => {
+            setValue(e.target.value);
+            setError(""); // clear error while typing
+      };
+
+      const handleBlur = () => {
+            const validationError = validateEmailOrPhone(value);
+            setError(validationError);
+      };
+
       const form = useRef();
       const sendEmail = (e) => {
             setLoading(true);
             e.preventDefault();
             const full_name = e.target.full_name.value;
-            const email_or_phone = e.target.email_or_phone.value;
             const message = e.target.message.value;
             const time_stamp = new Date().toISOString();
-
-            console.log(full_name, email_or_phone, message, time_stamp);
+            if (error) {
+                  return;
+            }
             fetch(`${base_url}/contact/add-contact`, {
                   method: 'POST',
                   headers: {
@@ -31,7 +55,7 @@ const Contact = () => {
                   },
                   body: JSON.stringify({
                         full_name,
-                        email_or_phone,
+                        email_or_phone: value,
                         message,
                         time_stamp,
                         status: 'pending'
@@ -115,8 +139,20 @@ const Contact = () => {
 
                                                 <div className="relative bg-[#0b0a2238] border border-[#1795F0] rounded-lg mt-8">
 
-                                                      <input required type="text" id='email_or_phone' name="email_or_phone" className="w-full rounded-lg outline-none border-none bg-[#00000034]" placeholder="Enter your email or phone number" />
+                                                      <input
+                                                            type="text"
+                                                            id="email_or_phone"
+                                                            name="email_or_phone"
+                                                            value={value}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                            required
+                                                            className="w-full rounded-lg outline-none border-none bg-[#00000034] p-2 text-white"
+                                                            placeholder="Enter your email or phone number"
+                                                      />
+
                                                 </div>
+                                                {error && <p className="text-red-500 mt-2 text-sm">{error}</p>}
                                                 <div className="relative bg-[#0b0a2238] border border-[#1795F0] rounded-lg mt-8">
 
                                                       <textarea name="message" type="text" className="w-full h-[110px] rounded-lg outline-none border-none bg-[#00000034] " placeholder="Enter your message" />

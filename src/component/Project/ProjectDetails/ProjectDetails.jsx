@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Title, { base_url } from '../../../layout/Title';
 import mahadi from '../../../Assctes/teamMember/mahadi.jpg';
@@ -38,9 +38,6 @@ const ProjectDetails = () => {
             refetch()
       }, [id])
 
-
-      const isWhite = project?.description?.includes('black');
-
       return (
             <div className="bg-[#1b2030] text-[#8a8a8a] px-2  py-[100px]">
                   {isLoading && <SkeletonLoader />}
@@ -56,6 +53,7 @@ const ProjectDetails = () => {
 
                                     <div className="mt-8">
                                           <div className="p-2 bg-[#2f4056a1] rounded-xl">
+
                                                 <img
                                                       loading="lazy"
                                                       src={project?.image_url || "/default-image.jpg"}
@@ -66,7 +64,7 @@ const ProjectDetails = () => {
                                           </div>
                                     </div>
 
-                                    <div className="mt-12 sm:mt-16 lg:grid lg:grid-cols-12 lg:gap-x-16 xl:gap-x-24">
+                                    <div className="mt-4 sm:mt-16 flex flex-col-reverse gap-4 lg:grid lg:grid-cols-12 lg:gap-x-16 xl:gap-x-24">
                                           <aside className="lg:col-span-4 lg:order-last lg:self-start lg:sticky lg:top-24">
                                                 <div className="overflow-hidden bg-[#ffffff3d] border border-gray-200 border-opacity-30 rounded">
                                                       <div className="px-4 py-5 sm:p-6">
@@ -90,7 +88,7 @@ const ProjectDetails = () => {
                                                       </div>
                                                 </div>
                                           </aside>
-                                          <article className="mt-12 prose lg:mt-0   custom-article lg:prose-lg lg:col-span-8 prose-blockquote:lg:text-xl prose-blockquote:lg:leading-9 prose-blockquote:not-italic prose-blockquote:border-none prose-blockquote:text-lg prose-blockquote:leading-8 prose-blockquote:p-0 prose-blockquote:lg:p-0 prose-blockquote:font-medium prose-blockquote:text-gray-900" dangerouslySetInnerHTML={{
+                                          <article className="prose custom-article lg:prose-lg lg:col-span-8 prose-blockquote:lg:text-xl prose-blockquote:lg:leading-9 prose-blockquote:not-italic prose-blockquote:border-none prose-blockquote:text-lg prose-blockquote:leading-8 prose-blockquote:p-0 prose-blockquote:lg:p-0 prose-blockquote:font-medium prose-blockquote:text-gray-900" dangerouslySetInnerHTML={{
                                                 __html: project?.description || '',
                                           }} >
 
@@ -183,4 +181,9 @@ const SkeletonLoader = () => (
             <div className="h-5 bg-gray-600 rounded w-1/3 mb-2"></div>
             <div className="h-5 bg-gray-600 rounded w-1/4"></div>
       </div>
+);
+
+
+const ImageSkeleton = () => (
+      <div className="w-full h-[250px] bg-gray-700 animate-pulse rounded-xl"></div>
 );
