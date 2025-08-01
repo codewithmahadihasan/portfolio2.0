@@ -36,6 +36,7 @@ const Contact = () => {
             const validationError = validateEmailOrPhone(value);
             setError(validationError);
       };
+      // data
 
       const form = useRef();
       const sendEmail = (e) => {
