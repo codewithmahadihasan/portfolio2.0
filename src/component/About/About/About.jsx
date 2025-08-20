@@ -307,7 +307,7 @@ const About = () => {
                                                             </div>
                                                             <div className="body pb-4">
                                                                   <h2 className="text-white font-semibold mt-2">{tData.name}</h2>
-                                                                  <p className="text-sm">{tData.post}</p>
+                                                                  <p className="text-[14px] text-[#1becff]">{tData.possition ?? tData.designation}</p>
                                                                   <small>{tData?.email}</small>
                                                                   <Link to={tData.linkedIn} target="_blank">
                                                                         <AiFillLinkedin className="text-4xl mt-4 m-auto text-[#1e6dff]" />
