@@ -10,7 +10,7 @@ const ProfileSection = ({ user }) => {
       }
 
       return (
-            <div className="flex flex-col md:flex-row gap-8">
+            <div className="flex flex-col md:flex-row gap-8 ">
                   <div className="flex flex-col items-center">
                         <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-gray-100 shadow-md mb-4">
                               {user?.image && imageLoaded ? (
@@ -29,31 +29,28 @@ const ProfileSection = ({ user }) => {
                   </div>
 
                   <div className="flex-1">
-                        <h2 className="text-2xl font-bold text-gray-800 mb-4">Profile Information</h2>
+                        <h2 className="text-2xl font-bold text-gray-100 mb-4">Profile Information</h2>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                               <div>
-                                    <p className="text-sm text-gray-500">Full Name</p>
+                                    <p className="text-sm text-gray-200">Full Name</p>
                                     <p className="font-medium">{user?.name || "Not provided"}</p>
                               </div>
 
                               <div>
-                                    <p className="text-sm text-gray-500">Email Address</p>
+                                    <p className="text-sm text-gray-200">Email Address</p>
                                     <p className="font-medium">{user?.email || "Not provided"}</p>
                               </div>
 
                               <div>
-                                    <p className="text-sm text-gray-500">Designation</p>
+                                    <p className="text-sm text-gray-200">Designation</p>
                                     <p className="font-medium">{user?.designation || "Not provided"}</p>
                               </div>
 
-                              <div>
-                                    <p className="text-sm text-gray-500">User ID</p>
-                                    <p className="font-medium text-gray-600">{user?._id || "Not available"}</p>
-                              </div>
+
 
                               <div>
-                                    <p className="text-sm text-gray-500">Account Created</p>
+                                    <p className="text-sm text-gray-200">Account Created</p>
                                     <p className="font-medium">
                                           {user?.timestamp
                                                 ? new Date(user.timestamp).toLocaleDateString("en-US", {

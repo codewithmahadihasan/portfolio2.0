@@ -1,6 +1,7 @@
 import { useState, useContext } from "react"
 import { AuthContext } from "../../../context/UseContext/UseContext"
 import { FaEye, FaEyeSlash } from "react-icons/fa"
+import { base_url } from "../../../layout/Title"
 
 const ChangePasswordForm = ({ user }) => {
       const { changePassword } = useContext(AuthContext)
@@ -59,21 +60,29 @@ const ChangePasswordForm = ({ user }) => {
             setMessage({ type: "", text: "" })
 
             try {
-                  await changePassword({
-                        currentPassword: formData.currentPassword,
-                        newPassword: formData.newPassword,
-                  })
+                  const data = {
+                        old_password: formData.currentPassword,
+                        new_password: formData.newPassword,
+                  }
 
-                  setMessage({
-                        type: "success",
-                        text: "Password changed successfully!",
+                  fetch(`${base_url}/auth/update-user-password?user_id=${user?._id}`, {
+                        method: "PUT",
+                        headers: {
+                              "Content-Type": "application/json",
+                              author: "bright_future_soft",
+                        },
+                        body: JSON.stringify(data),
                   })
+                        .then((res) => res.json())
+                        .then((data) => {
+                              if (data.success) {
+                                    setMessage({
+                                          type: "success",
+                                          text: "Password changed successfully!",
+                                    });
+                              }
+                        });
 
-                  setFormData({
-                        currentPassword: "",
-                        newPassword: "",
-                        confirmPassword: "",
-                  })
             } catch (error) {
                   setMessage({
                         type: "error",
@@ -86,7 +95,7 @@ const ChangePasswordForm = ({ user }) => {
 
       const renderPasswordInput = (label, name, value, error) => (
             <div>
-                  <label htmlFor={name} className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor={name} className="block text-sm font-medium text-gray-100 mb-1">
                         {label}
                   </label>
                   <div className="relative">
@@ -96,7 +105,7 @@ const ChangePasswordForm = ({ user }) => {
                               name={name}
                               value={value}
                               onChange={handleChange}
-                              className={`w-full px-3 py-2 border rounded-md  focus:ring-2 focus:ring-blue-500 ${error ? "border-red-500" : "border-gray-900"
+                              className={`w-full px-3 py-2 border border-gray-700 bg-gray-900 rounded-md  focus:ring-2 focus:ring-blue-500 ${error ? "border-red-500" : "border-gray-700"
                                     }`}
                         />
                         <button
@@ -113,7 +122,7 @@ const ChangePasswordForm = ({ user }) => {
 
       return (
             <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-6">
-                  <h2 className="text-2xl font-bold text-gray-800 mb-4">Change Password</h2>
+                  <h2 className="text-2xl font-bold text-gray-100 mb-4">Change Password</h2>
 
                   {message.text && (
                         <div

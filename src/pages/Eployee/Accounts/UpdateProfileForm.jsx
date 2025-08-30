@@ -1,76 +1,91 @@
-
-
-import { useState, useContext } from "react"
-import { AuthContext } from "../../../context/UseContext/UseContext"
+import { useState, useContext } from "react";
+import { AuthContext } from "../../../context/UseContext/UseContext";
+import { base_url } from "../../../layout/Title";
+import uploadImage from "../../../Hook/ImageUpload";
 
 const UpdateProfileForm = ({ user }) => {
-      const { updateUserProfile } = useContext(AuthContext)
-      const [isLoading, setIsLoading] = useState(false)
-      const [message, setMessage] = useState({ type: "", text: "" })
+      const { setUser } = useContext(AuthContext);
+      const [isLoading, setIsLoading] = useState(false);
+      const [message, setMessage] = useState({ type: "", text: "" });
       const [formData, setFormData] = useState({
             name: user?.name || "",
             email: user?.email || "",
             designation: user?.designation || "",
-            image: null,
-      })
-      const [previewImage, setPreviewImage] = useState(user?.image || null)
+            image: null, // will store the new File if selected
+      });
+      const [previewImage, setPreviewImage] = useState(user?.image || null);
 
       const handleChange = (e) => {
-            const { name, value } = e.target
-            setFormData((prev) => ({ ...prev, [name]: value }))
-      }
+            const { name, value } = e.target;
+            setFormData((prev) => ({ ...prev, [name]: value }));
+      };
 
       const handleImageChange = (e) => {
-            const file = e.target.files[0]
+            const file = e.target.files[0];
             if (file) {
-                  setFormData((prev) => ({ ...prev, image: file }))
+                  setFormData((prev) => ({ ...prev, image: file }));
 
-                  // Create preview URL
-                  const reader = new FileReader()
+                  const reader = new FileReader();
                   reader.onloadend = () => {
-                        setPreviewImage(reader.result)
-                  }
-                  reader.readAsDataURL(file)
+                        setPreviewImage(reader.result);
+                  };
+                  reader.readAsDataURL(file);
             }
-      }
+      };
 
       const handleSubmit = async (e) => {
-            e.preventDefault()
-            setIsLoading(true)
-            setMessage({ type: "", text: "" })
+            e.preventDefault();
+            setIsLoading(true);
+            setMessage({ type: "", text: "" });
 
             try {
-                  // Create form data for API
-                  const apiFormData = new FormData()
-                  apiFormData.append("name", formData.name)
-                  apiFormData.append("email", formData.email)
-                  apiFormData.append("designation", formData.designation)
+                  let imageUrl = user?.image || ""; // Default to existing image
+
+                  // If a new image is selected, upload it
                   if (formData.image) {
-                        apiFormData.append("image", formData.image)
+                        imageUrl = await uploadImage(formData.image);
                   }
 
-                  // Call the update function from context
-                  // This is a placeholder - you'll need to implement updateUserProfile in your AuthContext
-                  const result = await updateUserProfile(apiFormData)
+                  const data = {
+                        name: formData.name,
+                        email: formData.email,
+                        designation: formData.designation,
+                        image: imageUrl, // use URL, not File
+                  };
 
-                  setMessage({
-                        type: "success",
-                        text: "Profile updated successfully!",
+                  fetch(`${base_url}/auth/update-user-data?user_id=${user?._id}`, {
+                        method: "PUT",
+                        headers: {
+                              "Content-Type": "application/json",
+                              author: "bright_future_soft",
+                        },
+                        body: JSON.stringify(data),
                   })
+                        .then((res) => res.json())
+                        .then((data) => {
+                              if (data.success) {
+                                    localStorage.setItem('data', JSON.stringify(data.user));
+                                    setUser(data.user)
+                                    setMessage({
+                                          type: "success",
+                                          text: "Profile updated successfully!",
+                                    });
+                              }
+                        });
             } catch (error) {
-                  console.error("Update failed:", error)
+                  console.error("Update failed:", error);
                   setMessage({
                         type: "error",
                         text: error.message || "Failed to update profile. Please try again.",
-                  })
+                  });
             } finally {
-                  setIsLoading(false)
+                  setIsLoading(false);
             }
-      }
+      };
 
       return (
             <form onSubmit={handleSubmit} className="space-y-6">
-                  <h2 className="text-2xl font-bold text-gray-800 mb-4">Update Profile</h2>
+                  <h2 className="text-2xl font-bold text-gray-100 mb-4">Update Profile</h2>
 
                   {message.text && (
                         <div
@@ -107,7 +122,7 @@ const UpdateProfileForm = ({ user }) => {
 
                         <div className="md:w-2/3 space-y-4">
                               <div>
-                                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                                    <label htmlFor="name" className="block text-sm font-medium text-gray-100 mb-1">
                                           Full Name
                                     </label>
                                     <input
@@ -116,12 +131,12 @@ const UpdateProfileForm = ({ user }) => {
                                           name="name"
                                           value={formData.name}
                                           onChange={handleChange}
-                                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                          className="w-full px-3 py-2 border border-gray-700 bg-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                               </div>
 
                               <div>
-                                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                                    <label htmlFor="email" className="block text-sm font-medium text-gray-100 mb-1">
                                           Email Address
                                     </label>
                                     <input
@@ -130,12 +145,12 @@ const UpdateProfileForm = ({ user }) => {
                                           name="email"
                                           value={formData.email}
                                           onChange={handleChange}
-                                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                          className="w-full px-3 py-2 border border-gray-700 bg-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                               </div>
 
                               <div>
-                                    <label htmlFor="designation" className="block text-sm font-medium text-gray-700 mb-1">
+                                    <label htmlFor="designation" className="block text-sm font-medium text-gray-100 mb-1">
                                           Designation
                                     </label>
                                     <input
@@ -144,7 +159,7 @@ const UpdateProfileForm = ({ user }) => {
                                           name="designation"
                                           value={formData.designation}
                                           onChange={handleChange}
-                                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                          className="w-full px-3 py-2 border border-gray-700 bg-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     />
                               </div>
                         </div>
@@ -160,7 +175,7 @@ const UpdateProfileForm = ({ user }) => {
                         </button>
                   </div>
             </form>
-      )
-}
+      );
+};
 
-export default UpdateProfileForm
+export default UpdateProfileForm;

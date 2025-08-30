@@ -8,7 +8,7 @@ const Footer = () => {
                   <div className="px-1 py-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-20 lg:px-8 md:w-[80%] w-[95%]">
                         <div className="grid md:grid-cols-3 justify-center gap-2">
                               <div className="flex md:block flex-col items-center md:col-span-1 col-span-3">
-                                    <img loading="lazy" src={logo} alt="" className="w-[120px] md:mx-0 mx-auto" />
+                                    <Link to={'/'}> <img loading="lazy" src={logo} alt="" className="w-[120px] md:mx-0 mx-auto" /></Link>
                                     <p className="mt-4 ml-1 text-sm md:text-left text-center text-[gray]">
                                           Envisioning the <span className='text-red-500'>FUTURE</span>,
                                           <br />
