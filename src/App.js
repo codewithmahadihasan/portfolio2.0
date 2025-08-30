@@ -21,7 +21,7 @@ function App() {
       return (
             <div>
 
-                  {/* <Analytics /> */}
+                  <Analytics />
 
                   <RouterProvider router={route}></RouterProvider>
 
